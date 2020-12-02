@@ -15,6 +15,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {InputTextModule} from 'primeng/inputtext';
     AddFormDiaryComponent,
     EditFormComponent,
     RemoveFormDiaryComponent,
-    ContextDialogComponent
+    ContextDialogComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

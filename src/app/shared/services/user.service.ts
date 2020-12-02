@@ -13,7 +13,7 @@ export class UserService {
 
     private _users: User;
     
-    _url = 'https://localhost:44328/user/get?id=4';
+    _url = 'https://powerliftersdiary.gear.host/user/get?id=4';
 
 
     constructor(private http: HttpClient){ }
