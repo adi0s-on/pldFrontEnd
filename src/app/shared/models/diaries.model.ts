@@ -10,11 +10,11 @@ export class Diaries {
     Days: Array<Day>;
     DeadliftEnd: string;
     DeadliftStart: string;
-    EndDate: string;
+    EndDate: number;
     Id: string;
     Progress: string;
     SquatEnd: string;
     SquatStart: string;
-    StartDate: Date;
+    StartDate: number;
     UserId: string;
 }

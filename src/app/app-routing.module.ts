@@ -1,29 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MainpageuserComponent } from './components/mainpageuser/mainpageuser.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { Shell } from './components/shell/shell.service';
 
 const routes: Routes = [
-
-  {
-    path: 'mainpage',
-    component: MainpageuserComponent
-  },
-
-  {
-    path: '',
-    redirectTo: '/mainpage',
-    pathMatch: 'full'
-  },
-
-  {
-    path: '**',
-    component: NotfoundComponent
-  },
+  Shell.childRoutesNoAuth([
+    { path: 'not-found', component: NotfoundComponent }
+  ]),
+  { path: '**', redirectTo:'not-found', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, initialNavigation: 'enabled' })],
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

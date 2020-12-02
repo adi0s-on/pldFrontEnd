@@ -8,18 +8,18 @@ import { Diaries } from '../models/diaries.model';
     })
 export class DiaryService{
 
-    diary = new Subject<Diaries>();
+    diary = new Subject<Diaries[]>();
     diary$ = this.diary.asObservable();
 
-    private _diary: Diaries;
+    private _diary: Diaries[];
 
     constructor(private http: HttpClient){}
 
-    PATH = 'https://localhost:44328/';
+    PATH = 'api/diary';
 
     deleteDiary(id: string): Promise<any>{
         return new Promise((resolve, reject)=>{
-            this.http.delete(this.PATH + `diary/delete?id=${id}`).subscribe((res: any)=>{
+            this.http.delete(this.PATH + `/delete?id=${id}`).subscribe((res: any)=>{
                 this._diary = this._diary.filter(diary => diary.Id !== id);
                 this.diary.next(this._diary);
                 resolve(res);
@@ -30,9 +30,10 @@ export class DiaryService{
     }
 
     addDiary(diary: Diaries): Promise<Diaries>{
+      console.log(diary)
         return new Promise((resolve, reject) =>{
-            this.http.post(this.PATH + 'diary/create',diary).subscribe((res: Diaries)=>{
-                // this._diary.push(res);
+            this.http.post(this.PATH + '/create', diary).subscribe((res: Diaries)=>{
+                this._diary.push(res);
                 this.diary.next(this._diary);
                 if(res){
                     resolve(res);
@@ -57,5 +58,5 @@ export class DiaryService{
             });
         });
     }
-    
+
 }

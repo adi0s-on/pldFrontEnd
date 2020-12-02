@@ -23,18 +23,18 @@ export class MainpageuserComponent implements OnInit {
 
   constructor(private http:HttpClient,
               private userService: UserService,
-              private diaryService: DiaryService) { 
+              private diaryService: DiaryService) {
     this.userService.user$.subscribe((res)=>{
-      this.user=res; 
+      this.user=res;
     });
   }
 
   ngOnInit(): void {
     this.getUser();
   }
-  
+
   getUser(): void {
-    this.userService.getUser();
+    this.userService.getUser(4);
   }
 
   toggleModal(operationType: ModalType, diary?: Diaries): void {
@@ -43,7 +43,7 @@ export class MainpageuserComponent implements OnInit {
     this.modalToDisplay = true;
   }
   deleteDiary(): void{
-    this.diaryService.deleteDiary('14');
+    this.diaryService.deleteDiary('14').then();
   }
 
 }

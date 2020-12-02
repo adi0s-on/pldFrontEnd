@@ -1,11 +1,17 @@
-.content{
-    max-width: 500px;
-    margin:30px;
-  }
-  .tooltip {
+.content {
+  max-width: 500px;
+  margin: 30px;
+}
+
+.tooltip {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
+  cursor: pointer;
+}
+
+i {
+  cursor: pointer;
 }
 
 .tooltip .tooltiptext {

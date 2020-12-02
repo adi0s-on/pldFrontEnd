@@ -1,7 +1,7 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Diaries } from 'src/app/shared/models/diaries.model';
-import { DiaryService } from 'src/app/shared/services/diary.service';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Diaries} from 'src/app/shared/models/diaries.model';
+import {DiaryService} from 'src/app/shared/services/diary.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -10,79 +10,86 @@ import { DiaryService } from 'src/app/shared/services/diary.service';
 })
 export class EditFormComponent implements OnInit {
 
-  @Input() set diary(val: Diaries){
+  @Input() set diary(val: Diaries) {
     this._diary = val;
     this.createFormControls();
     this.createForm();
   };
+
   @Output() closeModal = new EventEmitter<boolean>();
-  
+
   editDiaryForm: FormGroup;
   _diary: Diaries;
 
-    StartDate: FormControl;
-    EndDate: FormControl;
-    Conclusions: FormControl;
-    BenchPressStart: FormControl;
-    SquatStart: FormControl;
-    DeadliftStart: FormControl;
-    BenchPressEnd: FormControl;
-    SquatEnd: FormControl;
-    DeadliftEnd: FormControl;
-    Progress: FormControl;
-    Days: FormControl;
-    
-    constructor(private formBuilder: FormBuilder,
-      private diaryService: DiaryService) { }
-  
-    
-    @HostListener('document:keydown.enter', ['$event'])
-    onClick(event: KeyboardEvent): void {
-        this.submit(this.editDiaryForm.value);
+  userId: FormControl;
+  StartDate: FormControl;
+  EndDate: FormControl;
+  Conclusions: FormControl;
+  BenchPressStart: FormControl;
+  SquatStart: FormControl;
+  DeadliftStart: FormControl;
+  BenchPressEnd: FormControl;
+  SquatEnd: FormControl;
+  DeadliftEnd: FormControl;
+  Progress: FormControl;
+  Days: FormControl;
+
+  constructor(private formBuilder: FormBuilder,
+              private diaryService: DiaryService) {
+  }
+
+
+  @HostListener('document:keydown.enter', ['$event'])
+  onClick(event: KeyboardEvent): void {
+    this.submit(this.editDiaryForm.value);
+  }
+
+
+  ngOnInit(): void {
+    this.createFormControls();
+    this.createForm();
+  }
+
+  createFormControls(): void {
+    this.userId = new FormControl({ value: this._diary?.UserId, disabled: true}, [Validators.required]);
+    this.StartDate = new FormControl(this._diary?.StartDate, [Validators.required]);
+    this.EndDate = new FormControl(this._diary?.EndDate, [Validators.required]);
+    this.Conclusions = new FormControl(this._diary?.Conclusions, [Validators.required]);
+    this.BenchPressStart = new FormControl(this._diary?.BenchPressStart, [Validators.required]);
+    this.SquatStart = new FormControl(this._diary?.SquatStart, [Validators.required]);
+    this.DeadliftStart = new FormControl(this._diary?.DeadliftStart, [Validators.required]);
+    this.BenchPressEnd = new FormControl(this._diary?.BenchPressEnd, [Validators.required]);
+    this.SquatEnd = new FormControl(this._diary?.SquatEnd, [Validators.required]);
+    this.DeadliftEnd = new FormControl(this._diary?.DeadliftEnd, [Validators.required]);
+    this.Progress = new FormControl(this._diary?.Progress, [Validators.required]);
+    this.Days = new FormControl(this._diary?.Days, [Validators.required]);
+  }
+
+  createForm(): void {
+    this.editDiaryForm = this.formBuilder.group({
+      userId: this.userId,
+      StartDate: this.StartDate,
+      EndDate: this.EndDate,
+      Conclusions: this.Conclusions,
+      BenchPressStart: this.BenchPressStart,
+      SquatStart: this.SquatStart,
+      DeadliftStart: this.DeadliftStart,
+      BenchPresEnd: this.BenchPressEnd,
+      SquatEnd: this.SquatEnd,
+      DeadliftEnd: this.DeadliftEnd,
+      Progress: this.Progress,
+      Days: this.Days,
+    })
+  }
+
+  submit(formValue: any): void {
+    this.editDiaryForm.markAllAsTouched();
+    if (this.editDiaryForm.valid) {
+      this.diaryService.addDiary(formValue).then((res) => {
+        this.editDiaryForm.reset();
+        this.closeModal.emit(true);
+      });
     }
-  
-  
-    ngOnInit(): void {
-    }
-  
-    createFormControls(): void{
-      this.StartDate = new FormControl(this._diary.StartDate, [Validators.required]);
-      this.EndDate = new FormControl(this._diary.EndDate, [Validators.required]);
-      this.Conclusions = new FormControl(this._diary.Conclusions, [Validators.required]);
-      this.BenchPressStart = new FormControl(this._diary.BenchPressStart, [Validators.required]);
-      this.SquatStart = new FormControl(this._diary.SquatStart, [Validators.required]);
-      this.DeadliftStart = new FormControl(this._diary.DeadliftStart, [Validators.required]);
-      this.BenchPressEnd = new FormControl(this._diary.BenchPressEnd, [Validators.required]);
-      this.SquatEnd = new FormControl(this._diary.SquatEnd, [Validators.required]);
-      this.DeadliftEnd = new FormControl(this._diary.DeadliftEnd, [Validators.required]);
-      this.Progress = new FormControl(this._diary.Progress, [Validators.required]);
-      this.Days = new FormControl(this._diary.Days, [Validators.required]);
-    }
-    
-    createForm(): void{
-      this.editDiaryForm = this.formBuilder.group({
-        StartDate: this.StartDate,
-        EndDate: this.EndDate,
-        Conclusions: this.Conclusions,
-        BenchPressStart: this.BenchPressStart,
-        SquatStart: this.SquatStart,
-        DeadliftStart: this.DeadliftStart,
-        BenchPresEnd: this.BenchPressEnd,
-        SquatEnd: this.SquatEnd,
-        DeadliftEnd: this.DeadliftEnd,
-        Progress: this.Progress,
-        Days: this.Days,
-      })
-    }
-  
-    submit(formValue: any): void{
-      this.editDiaryForm.markAllAsTouched();
-      if(this.editDiaryForm.valid){
-        this.diaryService.addDiary(formValue).then((res) =>{
-          this.editDiaryForm.reset();
-          this.closeModal.emit(true);
-        });
-      }
-    }
-  
+  }
+
 }

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ModalPosition} from '../../utils/modal-position.enum';
 import {ModalType} from '../../utils/modal-type.enum';
+import {Diaries} from '../../models/diaries.model';
 
 @Component({
   selector: 'app-context-dialog',
@@ -14,6 +15,8 @@ export class ContextDialogComponent implements OnInit {
   @Input() modalType: ModalType;
 
   @Output() modalClosed = new EventEmitter<boolean>();
+
+  @Input() diary: Diaries;
 
   ModalPosition = ModalPosition;
 

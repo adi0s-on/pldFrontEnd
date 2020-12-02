@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://powerliftersdiary.gear.host",
+    "secure": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}

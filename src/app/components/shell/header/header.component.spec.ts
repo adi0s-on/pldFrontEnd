@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemoveFormDiaryComponent } from './remove-form-diary.component';
+import { HeaderComponent } from './header.component';
 
-describe('RemoveFormDiaryComponent', () => {
-  let component: RemoveFormDiaryComponent;
-  let fixture: ComponentFixture<RemoveFormDiaryComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RemoveFormDiaryComponent ]
+      declarations: [ HeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RemoveFormDiaryComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

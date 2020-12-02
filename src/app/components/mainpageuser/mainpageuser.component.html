@@ -5,45 +5,45 @@
   <tr>
     <th>ID:</th>
     <th>Name: </th>
-    <th>Surname: </th> 
+    <th>Surname: </th>
     <th>City: </th>
     <button (click)="toggleModal(ModalType.ADDING, diary)">Add diary</button>
   </tr>
 
   <tr>
-    <th>{{user.Id}}</th>
-    <th>{{user.Name}}</th>
-    <th>{{user.Surname}}</th>
-    <th>{{user.City}}</th>
+    <th>{{user?.Id}}</th>
+    <th>{{user?.Name}}</th>
+    <th>{{user?.Surname}}</th>
+    <th>{{user?.City}}</th>
   </tr>
 </h1>
 </table>
 <table style="width:max-content">
   <tr>
-   <th>Diary ID:</th>
-   <th>User ID: </th>
-   <th>Start date: </th> 
-   <th>End date: </th>
-   <th>Conclusions: </th>
-   <th>Bench press start: </th>
-   <th>Bench press end: </th>
-   <th>Squat start: </th>
-   <th>Squat end: </th>
-   <th>Deadlift start: </th>
-   <th>Deadlift end: </th>
-   <th>Progress: </th>
-   <th>Days: </th>
-</tr>
+    <th>Diary ID:</th>
+    <th>User ID: </th>
+    <th>Start date: </th>
+    <th>End date: </th>
+    <th>Conclusions: </th>
+    <th>Bench press start: </th>
+    <th>Bench press end: </th>
+    <th>Squat start: </th>
+    <th>Squat end: </th>
+    <th>Deadlift start: </th>
+    <th>Deadlift end: </th>
+    <th>Progress: </th>
+    <th>Days: </th>
+  </tr>
 
-  <tr *ngFor="let diary of user.Diaries">
+  <tr *ngFor="let diary of user?.Diaries">
     <th>{{diary.Id}}</th>
     <th>{{diary.UserId}}</th>
-    <th>{{diary.StartDate}}</th>
-    <th>{{diary.EndDate}}</th>
+    <th>{{diary.StartDate | date: 'dd.MM.yyyy' }}</th>
+    <th>{{diary.EndDate  | date: 'dd.MM.yyyy' }}</th>
     <th class="tooltip">Conclusions
       <span class="tooltiptext">{{diary.Conclusions}}</span>
     </th>
-    
+
     <th>{{diary.BenchPressStart}}</th>
     <th>{{diary.BenchPressEnd}}</th>
     <th>{{diary.SquatStart}}</th>
@@ -51,7 +51,7 @@
     <th>{{diary.DeadliftStart}}</th>
     <th>{{diary.DeadliftEnd}}</th>
     <th>{{diary.Progress}}</th>
-    <th>{{diary.Days.length}}</th>
+    <th>{{diary.Days.length}} <i class="fa fa-info-circle"></i></th>
     <th>
       <button (click)="toggleModal(ModalType.EDITING, diary)">Edit</button>
     </th>
@@ -63,6 +63,7 @@
 </table>
 
 <app-context-dialog [displayModal]="modalToDisplay"
+                    [diary]="diary"
 [modalType]="operationType"
 (modalClosed)="modalToDisplay = $event">
 </app-context-dialog>
