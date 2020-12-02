@@ -1,0 +1,16 @@
+<p-dialog #dialog [(visible)]="displayModal"
+          class="{{ classMap.get(modalType) }}"
+          [modal]="true"
+          [maximizable]="false"
+          [baseZIndex]="10000"
+          [draggable]="false"
+          [resizable]="false"
+          [position]="ModalPosition.TOP"
+          [header]="titleMap.get(modalType)"
+          (onHide)="closeModal($event)">
+  <app-edit-form *ngIf="isTypeOf(ModalType.EDITING)" (closeModal)="displayModal = !$event"></app-edit-form>
+  <app-add-form-diary *ngIf="isTypeOf(ModalType.ADDING)" (closeModal)="displayModal = !$event"></app-add-form-diary>
+  <app-remove-form-diary *ngIf="isTypeOf(ModalType.REMOVING)" (closeModal)="displayModal = !$event"></app-remove-form-diary>
+  <div *ngIf="loading" class="overlay">
+  </div>
+</p-dialog>

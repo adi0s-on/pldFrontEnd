@@ -1,0 +1,105 @@
+<form [formGroup]="addDiaryForm" (ngSubmit)="submit(addDiaryForm)">
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="UserId" class="p-col-fixed">Your id</label>
+            <input id="UserId"
+                    type="number"
+                    formControlName="UserId"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="StartDate" class="p-col-fixed">Start date  </label>
+            <input id="StartDate"
+                    type="datetime"
+                    formControlName="StartDate"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="EndDate" class="p-col-fixed">End date</label>
+            <input id="EndDate"
+                    type="datetime"
+                    formControlName="EndDate"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="Conclusions" class="p-col-fixed">Conclusions</label>
+            <input id="Conclusions"
+                    type="text"
+                    formControlName="Conclusions"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="BenchPressStart" class="p-col-fixed">Bench press start  </label>
+            <input id="BenchPressStart"
+                    type="number"
+                    formControlName="BenchPressStart"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="BenchPressEnd" class="p-col-fixed">Bench press end</label>
+            <input id="BenchPressEnd"
+                    type="number"
+                    formControlName="BenchPressEnd"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="SquatStart" class="p-col-fixed">Squat start</label>
+            <input id="SquatStart"
+                    type="number"
+                    formControlName="SquatStart"
+                    pInputText>
+        </div>
+    </div>  
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="SquatEnd" class="p-col-fixed">Squat end</label>
+            <input id="SquatEnd"
+                    type="number"
+                    formControlName="SquatEnd"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="DeadliftStart" class="p-col-fixed">Deadlift start</label>
+            <input id="DeadliftStart"
+                    type="number"
+                    formControlName="DeadliftStart"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="DeadliftEnd" class="p-col-fixed">Deadlift end</label>
+            <input id="DeadliftEnd"
+                    type="number"
+                    formControlName="DeadliftEnd"
+                    pInputText>
+        </div>
+    </div>
+    <div class="p-field p-grid">
+        <div class="p-col">
+            <label for="Progress" class="p-col-fixed">Progress</label>
+            <input id="Progress"
+                    type="number"
+                    formControlName="Progress"
+                    pInputText>
+        </div>
+    </div>
+    <div>
+        <button
+            type="submit">Add</button>
+    </div>
+</form>
