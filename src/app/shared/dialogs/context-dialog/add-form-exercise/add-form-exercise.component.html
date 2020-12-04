@@ -1,0 +1,41 @@
+<form [formGroup]="addExerciseForm" (ngSubmit)="submit(addExerciseForm.value)">
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Name" class="p-col-fixed">Name</label>
+      <input id="Name"
+             type="text"
+             formControlName="Name"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Description" class="p-col-fixed">Description</label>
+      <input id="Description"
+             type="text"
+             formControlName="Description"
+             pInputText>
+      <!--          DATEPICKER -->
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="ExerciseEquipment" class="p-col-fixed">Equipment name</label>
+      <p-dropdown id="ExerciseEquipment"
+                  inputId="ExerciseEquipment"
+                  formControlName="ExerciseEquipment"
+                  [options]="exerciseEquipments"
+                  placeholder="Equipment name"
+                  optionLabel="Name"></p-dropdown>
+    </div>
+  </div>
+  <div>
+    <button pButton
+            pRipple
+            [disabled]="!addExerciseForm.valid"
+            type="submit" label="ADD"
+            class="p-button-raised p-button-success">
+
+    </button>
+  </div>
+</form>

@@ -1,0 +1,16 @@
+.content {
+  margin: 2rem;
+}
+
+.basic-data__tables {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+td {
+  text-transform: capitalize;
+}
+
+.__index {
+  font-weight: bolder;
+}

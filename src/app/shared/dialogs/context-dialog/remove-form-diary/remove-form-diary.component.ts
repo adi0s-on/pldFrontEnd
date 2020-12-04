@@ -10,20 +10,24 @@ import { Diaries } from 'src/app/shared/models/diaries.model';
 })
 export class RemoveFormDiaryComponent implements OnInit {
 
-  @Input() diary: Diaries;
   @Output() closeModal = new EventEmitter<boolean>();
+
+  diary: Diaries;
 
   removeDiaryForm: FormGroup;
 
-  constructor(private diaryService: DiaryService) { }
+  constructor(private diaryService: DiaryService,
+              private formBuilder: FormBuilder) {
+    this.diaryService.currentDiary$.subscribe((res: Diaries) => {
+      if (res) {
+        this.diary = res;
 
-@HostListener('document:keydown.enter',['$event'])
-onClick(event: any): void{
-  this.submit();
-}
-
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.removeDiaryForm = this.formBuilder.group({});
   }
 
   submit(): void{

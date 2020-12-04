@@ -1,6 +1,5 @@
 .content {
-  max-width: 500px;
-  margin: 30px;
+  margin: 2rem;
 }
 
 .tooltip {
@@ -16,7 +15,7 @@ i {
 }
 
 .tooltip .tooltiptext {
-  
+
   visibility: hidden;
   width: 120px;
   background-color: black;
@@ -53,18 +52,18 @@ th{
 th.header{
   font-weight: bold;
   font-size: 15pt;
-  border-bottom: 2px solid black; 
+  border-bottom: 2px solid black;
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-right: 2px solid black;
-  
+
 }
 
 th.name-surname-header
 {
   font-weight: 700;
   font-size: 30pt;
-  border-bottom: 2px solid black; 
+  border-bottom: 2px solid black;
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-right: 2px solid black;
@@ -92,8 +91,43 @@ i.fa-trash{
 th.user-details-header{
   font-weight: 700;
   font-size: 24pt;
-  border-bottom: 2px solid black; 
+  border-bottom: 2px solid black;
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-right: 2px solid black;
+}
+
+::ng-deep .content p-table .p-datatable {
+  padding-bottom: 1.5rem;
+}
+
+.info__icon {
+  text-align: center !important;
+}
+
+.info__icon button {
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+}
+
+::ng-deep .info__icon button .p-button-icon {
+  font-size: .8rem !important;
+}
+
+.days-info__icon button {
+  height: 1.2rem !important;
+  width: 1.2rem !important;
+}
+
+::ng-deep .days-info__icon button .p-button-icon {
+  font-size: .6rem !important;
+}
+
+.basic-data__tables {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.action__icon button:first-child {
+  margin-right: .5rem;
 }

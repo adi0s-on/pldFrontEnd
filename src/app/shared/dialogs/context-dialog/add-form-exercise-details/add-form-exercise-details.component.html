@@ -1,0 +1,66 @@
+<form [formGroup]="addExerciseDetailsForm" (ngSubmit)="submit(addExerciseDetailsForm.value)">
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Eccentric" class="p-col-fixed">Eccentric</label>
+      <input id="Eccentric"
+             type="number"
+             formControlName="Eccentric"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="EccentricPause" class="p-col-fixed">Eccentric Pause</label>
+      <input id="EccentricPause"
+             type="number"
+             formControlName="EccentricPause"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Concetric" class="p-col-fixed">Concetric</label>
+      <input id="Concetric"
+             type="number"
+             formControlName="Concetric"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="ConcetricPause" class="p-col-fixed">Concetric Pause</label>
+      <input id="ConcetricPause"
+             type="number"
+             formControlName="ConcetricPause"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Series" class="p-col-fixed">Series</label>
+      <input id="Series"
+             type="number"
+             formControlName="Series"
+             pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Repeats" class="p-col-fixed">Repeats</label>
+      <input id="Repeats"
+             type="number"
+             formControlName="Repeats"
+             pInputText>
+    </div>
+  </div>
+
+  <div>
+    <button pButton
+            pRipple
+            [disabled]="!addExerciseDetailsForm.valid"
+            type="submit" label="ADD"
+            class="p-button-raised p-button-success">
+
+    </button>
+  </div>
+</form>

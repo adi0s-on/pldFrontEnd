@@ -1,1 +1,116 @@
-<p>manage works!</p>
+<div class="content">
+  <div class="basic-data__tables">
+    <p-table class="user-data__table" [value]="exercises">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width: 10%">
+          <col style="width: 30%">
+          <col style="width: 30%">
+          <col style="width: 30%">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            <button (click)="toggleModal(ModalType.EXERCISE_ADD)"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-plus"
+                    class="p-button-rounded p-button-outlined p-button-success">
+            </button>
+          </th>
+          <th>Name:</th>
+          <th>Description:</th>
+          <th>Equipment name:</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-exercise let-i="rowIndex">
+        <tr>
+          <td><span class="__index">{{ i + 1 }}.</span></td>
+          <td>{{ exercise?.Name }}</td>
+          <td>{{ exercise?.Description }}</td>
+          <td>{{ exercise?.ExerciseEquipment?.Name }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <p-table class="user-details__table" [value]="exerciseDetails">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width: 10%">
+          <col style="width: 15%">
+          <col style="width: 15%">
+          <col style="width: 15%">
+          <col style="width: 15%">
+          <col style="width: 15%">
+          <col style="width: 15%">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            <button (click)="toggleModal(ModalType.EXERCISE_DETAILS_ADD)"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-plus"
+                    class="p-button-rounded p-button-outlined p-button-success">
+            </button>
+          </th>
+          <th>Eccentric:</th>
+          <th>Eccentric Pause:</th>
+          <th>Concentric:</th>
+          <th>Concentric Pause:</th>
+          <th>Series:</th>
+          <th>Repeats:</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-exerciseDetail let-i="rowIndex">
+        <tr>
+          <td><span class="__index">{{ i + 1 }}.</span></td>
+          <td>{{ exerciseDetail?.Eccentric }}</td>
+          <td>{{ exerciseDetail?.EccentricPause }}</td>
+          <td>{{ exerciseDetail?.Concetric }}</td>
+          <td>{{ exerciseDetail?.ConcetricPause }}</td>
+          <td>{{ exerciseDetail?.Series }}</td>
+          <td>{{ exerciseDetail?.Repeats }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <p-table class="user-details__table" [value]="exerciseEquipments">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width: 10%">
+          <col style="width: 90%">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            <button (click)="toggleModal(ModalType.EXERCISE_EQUIPMENT_ADD)"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-plus"
+                    class="p-button-rounded p-button-outlined p-button-success">
+            </button>
+          </th>
+          <th>Name:</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-exerciseEquipment let-i="rowIndex">
+        <tr>
+          <td><span class="__index">{{ i + 1 }}.</span></td>
+          <td>{{ exerciseEquipment?.Name }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <app-context-dialog [displayModal]="modalToDisplay"
+                      [modalType]="operationType"
+                      (modalClosed)="modalToDisplay = $event">
+  </app-context-dialog>
+</div>

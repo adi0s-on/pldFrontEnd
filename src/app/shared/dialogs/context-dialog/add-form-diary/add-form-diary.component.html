@@ -24,7 +24,7 @@
         <div class="p-col">
             <label for="EndDate" class="p-col-fixed">End date</label>
             <input id="EndDate"
-                    type="datetime"
+                    type="datetime-local"
                     formControlName="EndDate"
                     pInputText>
         </div>
@@ -102,7 +102,11 @@
         </div>
     </div>
     <div>
-        <button
-            type="submit">Add</button>
+      <button pButton
+              pRipple
+              type="submit" label="ADD"
+              class="p-button-raised p-button-success">
+
+      </button>
     </div>
 </form>

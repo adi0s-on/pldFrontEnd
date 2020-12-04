@@ -17,3 +17,12 @@ p {
   left: 0;
   border-radius: 3px 3px 0 0;
 }
+
+::ng-deep .p-dialog-title {
+  margin: auto;
+  padding-left: 2rem;
+}
+
+::ng-deep .p-dialog-content {
+  overflow-y: unset !important;
+}

@@ -12,6 +12,9 @@
   <app-add-form-diary *ngIf="isTypeOf(ModalType.ADDING)" (closeModal)="displayModal = !$event"></app-add-form-diary>
   <app-remove-form-diary *ngIf="isTypeOf(ModalType.REMOVING)" (closeModal)="displayModal = !$event"></app-remove-form-diary>
   <app-training-days *ngIf="isTypeOf(ModalType.DAYS)" [diary]="diary" (closeModal)="displayModal = !$event"></app-training-days>
+  <app-add-form-exercise *ngIf="isTypeOf(ModalType.EXERCISE_ADD)" (closeModal)="displayModal = !$event"></app-add-form-exercise>
+  <app-add-form-exercise-details *ngIf="isTypeOf(ModalType.EXERCISE_DETAILS_ADD)" (closeModal)="displayModal = !$event"></app-add-form-exercise-details>
+  <app-add-form-exercise-equipment *ngIf="isTypeOf(ModalType.EXERCISE_EQUIPMENT_ADD)" (closeModal)="displayModal = !$event"></app-add-form-exercise-equipment>
   <div *ngIf="loading" class="overlay">
   </div>
 </p-dialog>

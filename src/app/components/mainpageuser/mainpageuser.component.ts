@@ -24,7 +24,7 @@ export class MainpageuserComponent implements OnInit {
 
   constructor(private http:HttpClient,
               private userService: UserService,
-              private diaryService: DiaryService,
+              private _diaryService: DiaryService,
               private _authService: AuthService) {
     this.userService.user$.subscribe((res)=>{
       this.user=res;
@@ -32,7 +32,7 @@ export class MainpageuserComponent implements OnInit {
 
     this._authService.credentials$.subscribe((res) => {
       if (res.id) {
-        this.userService.getUser(res.id);
+        this.userService.getUser(res.id).then();
       }
     })
   }
@@ -40,18 +40,18 @@ export class MainpageuserComponent implements OnInit {
   ngOnInit(): void {
     const credentials = this._authService.getCredentials;
     if (credentials.id) {
-      this.userService.getUser(credentials.id);
+      this.userService.getUser(credentials.id).then();
     }
   }
 
   toggleModal(operationType: ModalType, diary?: Diaries): void {
     this.operationType = operationType;
-    this.diary = diary;
+    this._diaryService.setCurrentDiary(diary);
     this.modalToDisplay = true;
   }
 
   deleteDiary(): void{
-    this.diaryService.deleteDiary('14').then();
+    this._diaryService.deleteDiary('14').then();
   }
 
 }

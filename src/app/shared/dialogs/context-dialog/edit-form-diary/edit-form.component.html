@@ -1,18 +1,9 @@
 <form [formGroup]="editDiaryForm" (ngSubmit)="submit(editDiaryForm)">
     <div class="p-field p-grid">
         <div class="p-col">
-            <label for="UserId" class="p-col-fixed">Your id</label>
-            <input disabled="disabled" id="UserId"
-                    type="number"
-                    formControlName="UserId"
-                    pInputText>
-        </div>
-    </div>
-    <div class="p-field p-grid">
-        <div class="p-col">
-            <label for="StartDate" class="p-col-fixed">Start date  </label>
+            <label for="StartDate" class="p-col-fixed">Start date</label>
             <input id="StartDate"
-                    type="date"
+                    type="datetime-local"
                     formControlName="StartDate"
                     pInputText>
         </div>
@@ -21,7 +12,7 @@
         <div class="p-col">
             <label for="EndDate" class="p-col-fixed">End date</label>
             <input id="EndDate"
-                    type="datetime"
+                    type="datetime-local"
                     formControlName="EndDate"
                     pInputText>
         </div>
@@ -99,7 +90,11 @@
         </div>
     </div>
     <div>
-        <button
-            type="submit">Save changes</button>
+      <button pButton
+              pRipple
+              type="submit" label="EDIT"
+              class="p-button-raised p-button-warning">
+
+      </button>
     </div>
 </form>

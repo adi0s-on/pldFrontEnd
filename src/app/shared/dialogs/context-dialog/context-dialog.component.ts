@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ModalPosition} from '../../utils/modal-position.enum';
 import {ModalType} from '../../utils/modal-type.enum';
 import {Diaries} from '../../models/diaries.model';
+import {DiaryService} from '../../services/diary.service';
 
 @Component({
   selector: 'app-context-dialog',
@@ -26,6 +27,9 @@ export class ContextDialogComponent implements OnInit {
     [ModalType.EDITING, 'Edit'],
     [ModalType.ADDING, 'Add'],
     [ModalType.REMOVING, 'Remove'],
+    [ModalType.EXERCISE_ADD, 'Add exercise'],
+    [ModalType.EXERCISE_DETAILS_ADD, 'Add exercise details'],
+    [ModalType.EXERCISE_EQUIPMENT_ADD, 'Add exercise details'],
     [ModalType.DAYS, 'Days']
   ]);
 
@@ -33,18 +37,26 @@ export class ContextDialogComponent implements OnInit {
     [ModalType.EDITING, 'p-warning'],
     [ModalType.ADDING, 'p-success'],
     [ModalType.REMOVING, 'p-danger'],
+    [ModalType.EXERCISE_ADD, 'p-success'],
+    [ModalType.EXERCISE_DETAILS_ADD, 'p-success'],
+    [ModalType.EXERCISE_EQUIPMENT_ADD, 'p-success'],
     [ModalType.DAYS, 'p-success']
   ]);
 
   loading = false;
 
-  constructor() { }
+  constructor(private _diaryService: DiaryService) {
+    this._diaryService.currentDiary$.subscribe((diary) => {
+      this.diary = diary;
+    })
+  }
 
   ngOnInit(): void {
   }
 
   closeModal(event: any): void {
     this.modalClosed.emit(false);
+    this._diaryService.setCurrentDiary(null);
   }
 
   isTypeOf(typeName: ModalType): boolean {

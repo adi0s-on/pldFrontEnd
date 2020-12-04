@@ -1,85 +1,170 @@
 <div class="content">
-  <table style="width:max-content">
-    <h1>
-      <tr>
-        <th class="name-surname-header">ID:</th>
-        <th class="name-surname-header">Name:</th>
-        <th class="name-surname-header">Surname:</th>
-        <th class="name-surname-header">City:</th>
-      </tr>
+  <div class="basic-data__tables">
+    <p-table class="user-data__table" [value]="[user]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>First name:</th>
+          <th>Surname:</th>
+          <th>City:</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user?.Name }}</td>
+          <td>{{ user?.Surname }}</td>
+          <td>{{ user?.City }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
 
-      <tr>
-        <th>{{user?.Id}} </th>
-        <th>{{user?.Name}}</th>
-        <th>{{user?.Surname}}</th>
-        <th>{{user?.City}}</th>
-        <i class="fa fa-plus-square"
-            (click)="toggleModal(ModalType.ADDING, diary)">Add diary</i>
-      </tr>
-    </h1>
-    <h2>
-      <tr>
-        <th class="user-details-header">Height</th>
-        <th class="user-details-header">Weight</th>
-        <th class="user-details-header">Age</th>
-        <th class="user-details-header">BMR</th>
-        <th class="user-details-header">BMI</th>
-      </tr>
-      <tr>
-        <th>{{user?.UserDetails.Height}}</th>
-        <th>{{user?.UserDetails.Weight}}</th>
-        <th>{{user?.UserDetails.Age}}</th>
-        <th>{{user?.UserDetails.BMR}}</th>
-        <th>{{user?.UserDetails.BMI}}</th>
-      </tr>
-    </h2>
-  </table>
-  <table style="width:max-content">
-    <tr>
-      <th class="header">Diary ID:</th>
-      <th class="header">Start date:</th>
-      <th class="header">End date:</th>
-      <th class="header">Conclusions:</th>
-      <th class="header">Bench press start:</th>
-      <th class="header">Bench press end:</th>
-      <th class="header">Squat start:</th>
-      <th class="header">Squat end:</th>
-      <th class="header">Deadlift start:</th>
-      <th class="header">Deadlift end:</th>
-      <th class="header">Progress:</th>
-      <th class="header">Days:</th>
-    </tr>
+    <p-table class="user-details__table" [value]="[user?.UserDetails]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Height:</th>
+          <th>Weight:</th>
+          <th>Age:</th>
+          <th>BMR:</th>
+          <th>BMI:</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-userDetails>
+        <tr>
+          <td>{{ userDetails?.Height }}</td>
+          <td>{{ userDetails?.Weight }}</td>
+          <td>{{ userDetails?.Age }}</td>
+          <td>{{ userDetails?.BMR }}</td>
+          <td>{{ userDetails?.BMI }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 
-    <tr *ngFor="let diary of user?.Diaries">
-      <th>{{diary.Id}}</th>
-      <th>{{diary.StartDate | date: 'dd.MM.yyyy' }}</th>
-      <th>{{diary.EndDate  | date: 'dd.MM.yyyy' }}</th>
-      <th class="tooltip">Conclusion
-        <span class="tooltiptext">{{diary.Conclusions}}</span>
-      </th>
+  <p-table [value]="user?.Diaries">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <button (click)="toggleModal(ModalType.ADDING)"
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-plus"
+                  class="p-button-rounded p-button-outlined p-button-success">
+          </button>
+        </th>
+        <th>Start date:</th>
+        <th>End date:</th>
+        <th>Conclusions:</th>
+        <th>Bench press start:</th>
+        <th>Bench press end:</th>
+        <th>Squat start:</th>
+        <th>Squat end:</th>
+        <th>Deadlift start:</th>
+        <th>Deadlift end:</th>
+        <th>Progress:</th>
+        <th>Days:</th>
+        <th>Actions:</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-userDiary let-i="rowIndex">
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ userDiary?.StartDate | date: 'dd.MM.yyyy'  }}</td>
+        <td>{{ userDiary?.EndDate | date: 'dd.MM.yyyy'  }}</td>
+        <td class="info__icon">
+          <button pTooltip="{{ userDiary?.Conclusions }}"
+                  tooltipPosition="top"
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-info"
+                  class="p-button-rounded p-button-outlined p-button-info">
 
-      <th>{{diary.BenchPressStart}}kg</th>
-      <th>{{diary.BenchPressEnd}}kg</th>
-      <th>{{diary.SquatStart}}kg</th>
-      <th>{{diary.SquatEnd}}kg</th>
-      <th>{{diary.DeadliftStart}}kg</th>
-      <th>{{diary.DeadliftEnd}}kg</th>
-      <th>{{diary.Progress}}</th>
-      <th>{{diary.Days.length  }}
-        <i class="fa fa-info-circle"
-           (click)="toggleModal(ModalType.DAYS, diary)"></i>
-      </th>
-      <th>
-        <i class="fa fa-edit"
-        (click)="toggleModal(ModalType.EDITING, diary)"></i>
-      </th>
-      <th>
-        <i class="fa fa-trash"
-        (click)="toggleModal(ModalType.REMOVING, diary)"></i>
-      </th>
-    </tr>
+          </button>
+        </td>
+        <td>{{ userDiary?.BenchPressStart }} kg</td>
+        <td>{{ userDiary?.BenchPressEnd }} kg</td>
+        <td>{{ userDiary?.SquatStart }} kg</td>
+        <td>{{ userDiary?.SquatEnd }} kg</td>
+        <td>{{ userDiary?.DeadliftStart }} kg</td>
+        <td>{{ userDiary?.DeadliftEnd }} kg</td>
+        <td>{{ userDiary?.Progress }}</td>
+        <td class="days-info__icon">
+          {{ userDiary?.Days.length }}
+          <button (click)="toggleModal(ModalType.DAYS, userDiary)"
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-info"
+                  class="p-button-rounded p-button-outlined p-button-info">
+          </button>
+        </td>
+        <td class="action__icon">
+          <button (click)="toggleModal(ModalType.EDITING, userDiary)"
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-outlined p-button-warning">
+          </button>
+          <button (click)="toggleModal(ModalType.REMOVING, userDiary)"
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-outlined p-button-danger">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 
-  </table>
+
+<!--  <table style="width:max-content">-->
+<!--    <tr>-->
+<!--      <th class="header">Diary ID:</th>-->
+<!--      <th class="header">Start date:</th>-->
+<!--      <th class="header">End date:</th>-->
+<!--      <th class="header">Conclusions:</th>-->
+<!--      <th class="header">Bench press start:</th>-->
+<!--      <th class="header">Bench press end:</th>-->
+<!--      <th class="header">Squat start:</th>-->
+<!--      <th class="header">Squat end:</th>-->
+<!--      <th class="header">Deadlift start:</th>-->
+<!--      <th class="header">Deadlift end:</th>-->
+<!--      <th class="header">Progress:</th>-->
+<!--      <th class="header">Days:</th>-->
+<!--    </tr>-->
+
+<!--    <tr *ngFor="let diary of user?.Diaries">-->
+<!--      <th>{{diary.Id}}</th>-->
+<!--      <th>{{diary.StartDate | date: 'dd.MM.yyyy' }}</th>-->
+<!--      <th>{{diary.EndDate  | date: 'dd.MM.yyyy' }}</th>-->
+<!--      <th class="tooltip">Conclusion-->
+
+<!--      </th>-->
+
+<!--      <th>{{diary.BenchPressStart}}kg</th>-->
+<!--      <th>{{diary.BenchPressEnd}}kg</th>-->
+<!--      <th>{{diary.SquatStart}}kg</th>-->
+<!--      <th>{{diary.SquatEnd}}kg</th>-->
+<!--      <th>{{diary.DeadliftStart}}kg</th>-->
+<!--      <th>{{diary.DeadliftEnd}}kg</th>-->
+<!--      <th>{{diary.Progress}}</th>-->
+<!--      <th>{{diary.Days.length  }}-->
+<!--        <i class="fa fa-info-circle"-->
+<!--           (click)="toggleModal(ModalType.DAYS, diary)"></i>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <i class="fa fa-edit"-->
+<!--        (click)="toggleModal(ModalType.EDITING, diary)"></i>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <i class="fa fa-trash"-->
+<!--        (click)="toggleModal(ModalType.REMOVING, diary)"></i>-->
+<!--      </th>-->
+<!--    </tr>-->
+
+<!--  </table>-->
 
   <app-context-dialog [displayModal]="modalToDisplay"
                       [diary]="diary"

@@ -6,6 +6,7 @@
 .days-list {
   display: flex;
   flex-direction: column;
+  width: 225px;
 }
 
 .details__day {
@@ -13,15 +14,18 @@
   height: fit-content;
   transition: all .3s ease-in-out;
   padding-left: 1.5rem;
+  overflow: auto;
+  max-height: 300px;
 }
 
 .details__empty {
-  width: 100px;
-  height: 50px;
+  width: 0;
+  height: 0;
   transition: all .3s ease-in-out;
 }
 
 .days-list span {
+  margin: 0 auto;
   cursor: pointer;
 }
 
@@ -45,4 +49,97 @@
   flex-direction: column;
   padding-bottom: .5rem;
   border-bottom: 1px solid lightgray;
+}
+
+.buttons__container {
+  margin-top: auto;
+  display: flex;
+}
+
+button {
+  width: 50%;
+  margin: .1rem;
+}
+
+.date-adding__on {
+  margin-top: 1rem;
+  overflow: hidden;
+  height: 60px;
+  transition: height .3s ease-in-out;
+}
+
+.date-adding__off {
+  margin-top: 1rem;
+  height: 0;
+  transition: height .3s ease-in-out;
+}
+
+.vert__line {
+  height: 1px;
+  background: #2196F3;
+  margin: .5rem 0;
+}
+
+.adding__container {
+  display: flex;
+  margin-top: 5px;
+}
+
+.adding__container button {
+  margin-left: 5px;
+}
+
+.collapse__container button {
+  height: calc(100% - 1.5rem);
+  width: 1rem;
+  background: lightgray;
+  border: none;
+}
+
+::ng-deep .collapse__container button span {
+  margin-left: -.35rem;
+}
+
+.days {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-editing__on {
+  display: flex;
+  padding-top: 1rem;
+  border-top: 1px solid lightgray;
+  height: 200px;
+  width: 100%;
+  transition: height .3s ease-in-out;
+}
+
+.date-editing__off {
+  height: 0;
+  transition: height .3s ease-in-out;
+}
+
+.edit-buttons__container {
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-buttons__container button {
+  width: 100%;
+}
+
+.add__form {
+  padding-left: 1.5rem;
+}
+
+.add__form .p-col {
+  margin: .3rem 0;
+}
+
+.add__form label {
+  display: inline-block;
+  width: 120px;
 }

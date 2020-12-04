@@ -6,7 +6,7 @@ export class HeaderService {
   private readonly _headerOptions: MenuLink[] = [
     new MenuLink('home', '/home'),
     new MenuLink('manage', '/manage'),
-    new MenuLink(' ', ''),
+    new MenuLink('', ''),
   ];
 
   get headerOptions(): Observable<MenuLink[]> {

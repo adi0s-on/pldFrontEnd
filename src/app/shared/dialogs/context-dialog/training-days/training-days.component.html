@@ -1,17 +1,27 @@
 <div class="days-container">
   <div class="days-list">
-    <span *ngFor="let day of diary.Days" (click)="setCurrentDay(day)" [className]="day.Id === currentDay?.Id ? 'font__bold' : ''">
-      {{ day.Date | date: 'dd.MM.yyyy' }}
-    </span>
+    <div class="days">
+      <span *ngFor="let day of diary?.Days" (click)="setCurrentDay(day)" [className]="day.Id === currentDay?.Id ? 'font__bold' : ''">
+        {{ day.Date | date: 'dd.MM.yyyy' }}
+      </span>
+    </div>
+    <div class="buttons__container">
+      <button (click)="toggleAddingNewDay(true)" pButton pRipple type="button" label="ADD DAY" class="p-button-raised p-button-primary"></button>
+      <button [disabled]="!currentDay" (click)="toggleEdittingDay(true)" pButton pRipple type="button" label="EDIT" class="p-button-raised p-button-warning"></button>
+    </div>
   </div>
   <div [className]="currentDay ? 'details__day' : 'details__empty' " class="details__day">
     <div *ngIf="currentDay">
       <div>
-        <span>Sleep description:</span>
-        <span class="sleep_length">Sleep length:</span>
+        <span *ngIf="currentDay.Dream?.Quality">
+          Sleep description: {{ currentDay.Dream.Quality }}
+        </span>
+        <span class="sleep_length" *ngIf="currentDay.Dream?.Length">
+          Sleep length: {{currentDay.Dream.Length}}
+        </span>
       </div>
       <div class="training-unit__data" *ngFor="let trainingUnit of currentDay.TrainingUnits">
-        <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings; let i = index;">
+        <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
           <span>Exercise name: {{ exerciseTraining.Exercise.Name}}</span>
           <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
             Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
@@ -21,6 +31,83 @@
           </span>
         </div>
         <br />
+      </div>
+    </div>
+  </div>
+  <div class="collapse__container" *ngIf="currentDay">
+    <button pButton pRipple type="button" label="<" class="p-button-raised p-button-secondary" (click)="setCurrentDay(null)"></button>
+  </div>
+</div>
+<div [classList]="isAddingNewDay ? 'date-adding__on' : 'date-adding__off'">
+  <div class="adding__container" *ngIf="isAddingNewDay">
+    <div class="vert__line"></div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <input type="date"
+               id="_date"
+               [(ngModel)]="date"
+               pInputText>
+      </div>
+    </div>
+    <button [disabled]="!date" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="addNewDay()"></button>
+  </div>
+</div>
+<div [classList]="isEdittingDay ? 'date-editing__on' : 'date-editing__off'">
+  <div style="display: inherit" *ngIf="isEdittingDay" >
+    <div class="edit-buttons__container">
+      <button (click)="toggleAddingDreamOrUnit(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
+      <button (click)="toggleAddingDreamOrUnit(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
+    </div>
+    <div *ngIf="isAddingDreamOrUnit" class="add__form">
+      <div *ngIf="addingType === 'dream'">
+        <form [formGroup]="addDreamForm" (submit)="addNewDream(addDreamForm.value)">
+          <div class="p-field p-grid">
+            <div class="p-col">
+              <label for="Length" class="p-col-fixed">Length</label>
+              <input id="Length"
+                     type="number"
+                     formControlName="Length"
+                     pInputText>
+            </div>
+          </div>
+          <div class="p-field p-grid">
+            <div class="p-col">
+              <label for="Quality" class="p-col-fixed">Description</label>
+              <input class="xd" id="Quality"
+                     type="text"
+                     formControlName="Quality"
+                     pInputText>
+            </div>
+          </div>
+          <button [disabled]="!addDreamForm.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
+        </form>
+      </div>
+      <div *ngIf="addingType === 'unit'">
+        <form [formGroup]="addTrainingUnit" (submit)="addNewTrainingUnit(addTrainingUnit.value)">
+          <div class="p-field p-grid">
+            <div class="p-col">
+              <label for="ExerciseId" class="p-col-fixed">Exercise</label>
+              <p-dropdown id="ExerciseId"
+                          inputId="ExerciseId"
+                          formControlName="ExerciseId"
+                          [options]="exercises"
+                          placeholder="Exercise name"
+                          optionLabel="Name"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-field p-grid">
+            <div class="p-col">
+              <label for="Quality" class="p-col-fixed">Exercise details</label>
+              <p-dropdown id="ExerciseDetailsId"
+                          inputId="ExerciseDetailsId"
+                          formControlName="ExerciseDetailsId"
+                          [options]="exerciseDetails"
+                          placeholder="Exercise details"
+                          optionLabel="display"></p-dropdown>
+            </div>
+          </div>
+          <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
+        </form>
       </div>
     </div>
   </div>

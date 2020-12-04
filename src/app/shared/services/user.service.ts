@@ -26,16 +26,23 @@ export class UserService {
               private _authService: AuthService) {
   }
 
-  getUser(userId: string): void {
-    this._http.get<User>(this.PATH + `/get?id=${userId}`).subscribe((_response: User) => {
-      _response.Diaries.map(diary => {
-        diary.StartDate = (diary.StartDate.toString().replace(/\D/g, ''));
-        diary.EndDate = (diary.EndDate.toString().replace(/\D/g, ''));
-        diary.Days.map(day => {
-          day.Date = (day.Date.toString().replace(/\D/g, ''));
-        })
+  getUser(userId: string): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this._http.get<User>(this.PATH + `/get?id=${userId}`).subscribe((_response: User) => {
+        _response.Diaries.map(diary => {
+          diary.StartDate = (diary.StartDate.toString().replace(/\D/g, ''));
+          diary.EndDate = (diary.EndDate.toString().replace(/\D/g, ''));
+          diary.Days.map(day => {
+            day.Date = (day.Date.toString().replace(/\D/g, ''));
+          })
+        });
+        this.user.next(_response);
+        if (_response) {
+          resolve(_response);
+        }
+      }, (_error) => {
+        reject(_error);
       });
-      this.user.next(_response)
     });
   }
 

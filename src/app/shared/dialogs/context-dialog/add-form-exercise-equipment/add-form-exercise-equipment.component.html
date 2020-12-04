@@ -1,0 +1,19 @@
+<form [formGroup]="addExerciseEquipmentForm" (ngSubmit)="submit(addExerciseEquipmentForm.value)">
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="Name" class="p-col-fixed">Name</label>
+      <input id="Name"
+             type="text"
+             formControlName="Name"
+             pInputText>
+    </div>
+  </div>
+  <div>
+    <button pButton
+            pRipple
+            [disabled]="!addExerciseEquipmentForm.valid"
+            type="submit" label="ADD"
+            class="p-button-raised p-button-success">
+    </button>
+  </div>
+</form>

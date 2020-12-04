@@ -2,6 +2,7 @@ import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@ang
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Diaries} from 'src/app/shared/models/diaries.model';
 import {DiaryService} from 'src/app/shared/services/diary.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit-form',
@@ -91,5 +92,4 @@ export class EditFormComponent implements OnInit {
       });
     }
   }
-
 }

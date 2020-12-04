@@ -6,6 +6,6 @@ export class Day{
     Id: string;
     DiaryId: string;
     Date: string;
-    Dream: Dream[]
+    Dream: Dream;
     TrainingUnits: TrainingUnit[];
 }

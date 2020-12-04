@@ -15,12 +15,11 @@ import {MainpageuserModule} from './components/mainpageuser/mainpageuser.module'
 import {NotfoundRoutingModule} from './components/notfound/notfound-routing.module';
 import {TokenInterceptor} from './shared/services/auth/token-interceptor';
 import {RegisterModule} from './components/register/register.module';
-import { ManageComponent } from './components/manage/manage.component';
+import {ManageModule} from './components/manage/manage.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,8 +34,9 @@ import { ManageComponent } from './components/manage/manage.component';
     ShellModule,
     LoginModule,
     RegisterModule,
-    AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    ManageModule,
+    AppRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
