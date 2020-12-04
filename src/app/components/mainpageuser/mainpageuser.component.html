@@ -17,6 +17,22 @@
             (click)="toggleModal(ModalType.ADDING, diary)">Add diary</i>
       </tr>
     </h1>
+    <h2>
+      <tr>
+        <th class="user-details-header">Height</th>
+        <th class="user-details-header">Weight</th>
+        <th class="user-details-header">Age</th>
+        <th class="user-details-header">BMR</th>
+        <th class="user-details-header">BMI</th>
+      </tr>
+      <tr>
+        <th>{{user?.UserDetails.Height}}</th>
+        <th>{{user?.UserDetails.Weight}}</th>
+        <th>{{user?.UserDetails.Age}}</th>
+        <th>{{user?.UserDetails.BMR}}</th>
+        <th>{{user?.UserDetails.BMI}}</th>
+      </tr>
+    </h2>
   </table>
   <table style="width:max-content">
     <tr>

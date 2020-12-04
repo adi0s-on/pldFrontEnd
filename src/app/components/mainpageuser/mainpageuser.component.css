@@ -88,3 +88,12 @@ i.fa-edit{
 i.fa-trash{
   font-size: 20pt;
 }
+
+th.user-details-header{
+  font-weight: 700;
+  font-size: 24pt;
+  border-bottom: 2px solid black; 
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
