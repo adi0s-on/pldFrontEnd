@@ -25,13 +25,15 @@ export class ContextDialogComponent implements OnInit {
   titleMap = new Map([
     [ModalType.EDITING, 'Edit'],
     [ModalType.ADDING, 'Add'],
-    [ModalType.REMOVING, 'Remove']
+    [ModalType.REMOVING, 'Remove'],
+    [ModalType.DAYS, 'Days']
   ]);
 
   classMap = new Map([
     [ModalType.EDITING, 'p-warning'],
     [ModalType.ADDING, 'p-success'],
-    [ModalType.REMOVING, 'p-danger']
+    [ModalType.REMOVING, 'p-danger'],
+    [ModalType.DAYS, 'p-success']
   ]);
 
   loading = false;

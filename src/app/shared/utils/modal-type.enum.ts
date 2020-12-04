@@ -1,6 +1,6 @@
 export enum ModalType {
     REMOVING = 'removing',
     EDITING = 'editing',
-    ADDING = 'adding'
+    ADDING = 'adding',
+    DAYS = 'days'
   }
-  

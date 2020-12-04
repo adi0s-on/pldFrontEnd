@@ -1,5 +1,35 @@
 <div class="container">
-  <a [routerLink]="['']">< go back</a>
-
-  <div class="container__content"></div>
+  <div class="container__content">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (submit)="login(loginForm.value)">
+      <div class="p-field p-grid">
+        <div class="p-col">
+          <input id="userName"
+                 type="text"
+                 formControlName="userName"
+                 pInputText>
+          <label for="userName" class="p-col-fixed">Username</label>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col">
+          <input id="password"
+                 type="password"
+                 formControlName="password"
+                 pInputText>
+          <label for="password" class="p-col-fixed">Password</label>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col">
+          <p-button type="submit" label="login"></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="info__content">
+    <span>Don't have account? </span>
+    <a [routerLink]="['/sign-up']">Create</a>
+    <span> a new one</span>
+  </div>
 </div>

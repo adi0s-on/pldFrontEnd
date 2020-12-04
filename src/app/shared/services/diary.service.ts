@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import { Diaries } from '../models/diaries.model';
+import {DatePipe} from '@angular/common';
+import * as moment from 'moment';
 
 @Injectable({
         providedIn: 'root'
@@ -30,7 +32,11 @@ export class DiaryService{
     }
 
     addDiary(diary: Diaries): Promise<Diaries>{
+      diary.StartDate = moment(diary.StartDate).format();
       console.log(diary)
+      // DatePipe.
+      // diary.StartDate = diary.StartDate.
+
         return new Promise((resolve, reject) =>{
             this.http.post(this.PATH + '/create', diary).subscribe((res: Diaries)=>{
                 this._diary.push(res);

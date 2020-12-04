@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SharedModule} from '../../shared/shared.module';
-import {LoginComponent} from './login.component';
-import {LoginRoutingModule} from './login-routing.module';
+import {RegisterComponent} from './register.component';
+import {RegisterRoutingModule} from './register-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
@@ -11,15 +11,15 @@ import {ButtonModule} from 'primeng/button';
   imports: [
     CommonModule,
     SharedModule,
-    LoginRoutingModule,
+    RegisterRoutingModule,
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule
   ],
   declarations: [
-    LoginComponent
+    RegisterComponent
   ]
 })
-export class LoginModule {
+export class RegisterModule {
 
 }

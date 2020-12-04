@@ -2,7 +2,16 @@
   <nav class="nav">
     <ul class="nav__list">
       <li *ngFor="let link of getHeaderOptions() | async">
-        <a [href]="link.url">{{ link.title }}</a>
+        <a [routerLink]="link.url">{{ link.title }}</a>
+      </li>
+      <li *ngIf="!loggedIn">
+        <a [routerLink]="['/login']">login</a>
+      </li>
+      <li *ngIf="!loggedIn">
+        <a [routerLink]="['/signup']">sign up</a>
+      </li>
+      <li *ngIf="loggedIn">
+        <a (click)="logOut()">logout</a>
       </li>
     </ul>
   </nav>

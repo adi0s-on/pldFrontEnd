@@ -2,6 +2,9 @@ import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@ang
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Diaries} from 'src/app/shared/models/diaries.model';
 import {DiaryService} from 'src/app/shared/services/diary.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user.model';
+import {AuthService} from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-add-form-diary',
@@ -31,7 +34,8 @@ export class AddFormDiaryComponent implements OnInit {
   Days: FormControl;
 
   constructor(private formBuilder: FormBuilder,
-              private diaryService: DiaryService) {
+              private diaryService: DiaryService,
+              private _authService: AuthService) {
   }
 
 
@@ -48,18 +52,18 @@ export class AddFormDiaryComponent implements OnInit {
   }
 
   createFormControls(): void {
-    this.UserId = new FormControl('', [ Validators.required ]);
-    this.StartDate = new FormControl('', []);
-    this.EndDate = new FormControl('', []);
-    this.Conclusions = new FormControl('', []);
-    this.BenchPressStart = new FormControl('', []);
-    this.SquatStart = new FormControl('', []);
-    this.DeadliftStart = new FormControl('', []);
-    this.BenchPressEnd = new FormControl('', []);
-    this.SquatEnd = new FormControl('', []);
-    this.DeadliftEnd = new FormControl('', []);
-    this.Progress = new FormControl('', []);
-    this.Days = new FormControl('', []);
+    this.UserId = new FormControl(this._authService._credentials.id, [ Validators.required ]);
+    this.StartDate = new FormControl(null, []);
+    this.EndDate = new FormControl(null, []);
+    this.Conclusions = new FormControl(null, []);
+    this.BenchPressStart = new FormControl(null, []);
+    this.SquatStart = new FormControl(null, []);
+    this.DeadliftStart = new FormControl(null, []);
+    this.BenchPressEnd = new FormControl(null, []);
+    this.SquatEnd = new FormControl(null, []);
+    this.DeadliftEnd = new FormControl(null, []);
+    this.Progress = new FormControl(null, []);
+    this.Days = new FormControl(null, []);
   }
 
   createForm(): void {

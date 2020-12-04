@@ -7,6 +7,7 @@ import {AddFormDiaryComponent} from './dialogs/context-dialog/add-form-diary/add
 import {RemoveFormDiaryComponent} from './dialogs/context-dialog/remove-form-diary/remove-form-diary.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HeaderService} from './services/header.service';
+import {TrainingDaysComponent} from './dialogs/context-dialog/training-days/training-days.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {HeaderService} from './services/header.service';
     ContextDialogComponent,
     EditFormComponent,
     AddFormDiaryComponent,
+    TrainingDaysComponent,
     RemoveFormDiaryComponent
   ],
   exports: [

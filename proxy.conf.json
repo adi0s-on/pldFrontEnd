@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://powerliftersdiary.gear.host",
+    "target": "http://powerliftersdiary2.gear.host",
     "secure": true,
     "pathRewrite": {
       "^/api": ""

@@ -25,6 +25,7 @@ header {
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
   color: inherit;
   transition: all .3s ease-in-out;

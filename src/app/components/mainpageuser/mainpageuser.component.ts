@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import { DiaryService } from 'src/app/shared/services/diary.service';
 import { Diaries } from 'src/app/shared/models/diaries.model';
 import {ModalType} from 'src/app/shared/utils/modal-type.enum'
+import {AuthService} from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-mainpageuser',
@@ -23,18 +24,24 @@ export class MainpageuserComponent implements OnInit {
 
   constructor(private http:HttpClient,
               private userService: UserService,
-              private diaryService: DiaryService) {
+              private diaryService: DiaryService,
+              private _authService: AuthService) {
     this.userService.user$.subscribe((res)=>{
       this.user=res;
     });
+
+    this._authService.credentials$.subscribe((res) => {
+      if (res.id) {
+        this.userService.getUser(res.id);
+      }
+    })
   }
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  getUser(): void {
-    this.userService.getUser(4);
+    const credentials = this._authService.getCredentials;
+    if (credentials.id) {
+      this.userService.getUser(credentials.id);
+    }
   }
 
   toggleModal(operationType: ModalType, diary?: Diaries): void {
@@ -42,6 +49,7 @@ export class MainpageuserComponent implements OnInit {
     this.diary = diary;
     this.modalToDisplay = true;
   }
+
   deleteDiary(): void{
     this.diaryService.deleteDiary('14').then();
   }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -12,6 +12,8 @@ import {ShellModule} from './components/shell/shell.module';
 import {LoginModule} from './components/login/login.module';
 import {MainpageuserModule} from './components/mainpageuser/mainpageuser.module';
 import {NotfoundRoutingModule} from './components/notfound/notfound-routing.module';
+import {TokenInterceptor} from './shared/services/auth/token-interceptor';
+import {RegisterModule} from './components/register/register.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,14 @@ import {NotfoundRoutingModule} from './components/notfound/notfound-routing.modu
     InputTextModule,
     ShellModule,
     LoginModule,
+    RegisterModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   exports: [
   ],
   bootstrap: [AppComponent]

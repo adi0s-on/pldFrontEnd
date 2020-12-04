@@ -4,7 +4,7 @@ import {MainpageuserComponent} from './mainpageuser.component';
 import {Shell} from '../shell/shell.service';
 
 const routes: Routes = [
-  Shell.childRoutesNoAuth([
+  Shell.childRoutes([
     { path: '', component: MainpageuserComponent },
     { path: 'home', component: MainpageuserComponent}
   ]

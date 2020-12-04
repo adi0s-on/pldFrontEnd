@@ -1,0 +1,23 @@
+<div class="days-container">
+  <div class="days-list">
+    <span *ngFor="let day of diary.Days" (click)="setCurrentDay(day)" [className]="day.Id === currentDay?.Id ? 'font__bold' : ''">
+      {{ day.Date | date: 'dd.MM.yyyy' }}
+    </span>
+  </div>
+  <div [className]="currentDay ? 'details__day' : 'details__empty' " class="details__day">
+    <div *ngIf="currentDay">
+      <div class="training-unit__data" *ngFor="let trainingUnit of currentDay.TrainingUnits">
+        <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings; let i = index;">
+          <span>Name: {{ exerciseTraining.Exercise.Name}}</span>
+          <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
+            Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
+          </span>
+          <span *ngIf="exerciseTraining.ExerciseDetails">
+            Series and repeats: {{ exerciseTraining.ExerciseDetails.Series}} x {{ exerciseTraining.ExerciseDetails.Repeats}}
+          </span>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

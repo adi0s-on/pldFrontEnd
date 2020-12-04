@@ -7,14 +7,14 @@ export class Diaries {
     BenchPressEnd: string;
     BenchPressStart: string;
     Conclusions: string;
-    Days: Array<Day>;
+    Days: Day[];
     DeadliftEnd: string;
     DeadliftStart: string;
-    EndDate: number;
+    EndDate: string;
     Id: string;
     Progress: string;
     SquatEnd: string;
     SquatStart: string;
-    StartDate: number;
+    StartDate: string;
     UserId: string;
 }

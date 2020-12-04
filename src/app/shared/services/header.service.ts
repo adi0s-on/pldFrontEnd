@@ -7,8 +7,6 @@ export class HeaderService {
     new MenuLink('home', '/home'),
     new MenuLink('home2', '/home'),
     new MenuLink('home3', ''),
-    new MenuLink('Login', '/login'),
-    new MenuLink('Sign up', '/signup')
   ];
 
   get headerOptions(): Observable<MenuLink[]> {
