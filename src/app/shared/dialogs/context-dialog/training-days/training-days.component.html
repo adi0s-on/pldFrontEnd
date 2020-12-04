@@ -6,9 +6,13 @@
   </div>
   <div [className]="currentDay ? 'details__day' : 'details__empty' " class="details__day">
     <div *ngIf="currentDay">
+      <div>
+        <span>Sleep description:</span>
+        <span class="sleep_length">Sleep length:</span>
+      </div>
       <div class="training-unit__data" *ngFor="let trainingUnit of currentDay.TrainingUnits">
         <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings; let i = index;">
-          <span>Name: {{ exerciseTraining.Exercise.Name}}</span>
+          <span>Exercise name: {{ exerciseTraining.Exercise.Name}}</span>
           <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
             Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
           </span>

@@ -1,0 +1,13 @@
+.p-col{
+    padding-bottom: 1rem;
+}
+
+label{
+    width: 160px;
+    display: inline-block;
+}
+
+input
+{
+    width: 100px;
+}

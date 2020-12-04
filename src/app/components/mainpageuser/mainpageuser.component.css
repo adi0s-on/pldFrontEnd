@@ -12,9 +12,11 @@
 
 i {
   cursor: pointer;
+  font-size: large;
 }
 
 .tooltip .tooltiptext {
+  
   visibility: hidden;
   width: 120px;
   background-color: black;
@@ -42,4 +44,47 @@ i {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+th{
+  padding-right: 2rem;
+}
+
+th.header{
+  font-weight: bold;
+  font-size: 15pt;
+  border-bottom: 2px solid black; 
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  
+}
+
+th.name-surname-header
+{
+  font-weight: 700;
+  font-size: 30pt;
+  border-bottom: 2px solid black; 
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+i.fa-plus-square
+{
+  padding-left: 3rem;
+  font-size: 25pt;
+}
+
+i.fa-info-circle
+{
+  font-size: 15pt;
+}
+
+i.fa-edit{
+  padding-left: 1rem;
+  font-size: 20pt;
+}
+i.fa-trash{
+  font-size: 20pt;
 }

@@ -30,6 +30,12 @@
   font-family: "Microsoft YaHei UI";
 }
 
+.sleep_length{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.5rem;
+}
+
 .training-unit__data {
   display: inline-block;
 }

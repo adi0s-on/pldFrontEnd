@@ -21,7 +21,7 @@ export class EditFormComponent implements OnInit {
   editDiaryForm: FormGroup;
   _diary: Diaries;
 
-  userId: FormControl;
+  UserId: FormControl;
   StartDate: FormControl;
   EndDate: FormControl;
   Conclusions: FormControl;
@@ -51,7 +51,7 @@ export class EditFormComponent implements OnInit {
   }
 
   createFormControls(): void {
-    this.userId = new FormControl({ value: this._diary?.UserId, disabled: true}, [Validators.required]);
+    this.UserId = new FormControl({ value: this._diary?.UserId, disabled: true}, [Validators.required]);
     this.StartDate = new FormControl(this._diary?.StartDate, [Validators.required]);
     this.EndDate = new FormControl(this._diary?.EndDate, [Validators.required]);
     this.Conclusions = new FormControl(this._diary?.Conclusions, [Validators.required]);
@@ -67,14 +67,14 @@ export class EditFormComponent implements OnInit {
 
   createForm(): void {
     this.editDiaryForm = this.formBuilder.group({
-      userId: this.userId,
+      UserId: this.UserId,
       StartDate: this.StartDate,
       EndDate: this.EndDate,
       Conclusions: this.Conclusions,
       BenchPressStart: this.BenchPressStart,
       SquatStart: this.SquatStart,
       DeadliftStart: this.DeadliftStart,
-      BenchPresEnd: this.BenchPressEnd,
+      BenchPressEnd: this.BenchPressEnd,
       SquatEnd: this.SquatEnd,
       DeadliftEnd: this.DeadliftEnd,
       Progress: this.Progress,

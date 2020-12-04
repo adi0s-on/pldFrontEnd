@@ -1,65 +1,65 @@
 <div class="content">
-  <h2>User</h2>
-  <table style="width:50%">
+  <table style="width:max-content">
     <h1>
       <tr>
-        <th>ID:</th>
-        <th>Name:</th>
-        <th>Surname:</th>
-        <th>City:</th>
-        <button (click)="toggleModal(ModalType.ADDING, diary)">Add diary</button>
+        <th class="name-surname-header">ID:</th>
+        <th class="name-surname-header">Name:</th>
+        <th class="name-surname-header">Surname:</th>
+        <th class="name-surname-header">City:</th>
       </tr>
 
       <tr>
-        <th>{{user?.Id}}</th>
+        <th>{{user?.Id}} </th>
         <th>{{user?.Name}}</th>
         <th>{{user?.Surname}}</th>
         <th>{{user?.City}}</th>
+        <i class="fa fa-plus-square"
+            (click)="toggleModal(ModalType.ADDING, diary)">Add diary</i>
       </tr>
     </h1>
   </table>
   <table style="width:max-content">
     <tr>
-      <th>Diary ID:</th>
-      <th>User ID:</th>
-      <th>Start date:</th>
-      <th>End date:</th>
-      <th>Conclusions:</th>
-      <th>Bench press start:</th>
-      <th>Bench press end:</th>
-      <th>Squat start:</th>
-      <th>Squat end:</th>
-      <th>Deadlift start:</th>
-      <th>Deadlift end:</th>
-      <th>Progress:</th>
-      <th>Days:</th>
+      <th class="header">Diary ID:</th>
+      <th class="header">Start date:</th>
+      <th class="header">End date:</th>
+      <th class="header">Conclusions:</th>
+      <th class="header">Bench press start:</th>
+      <th class="header">Bench press end:</th>
+      <th class="header">Squat start:</th>
+      <th class="header">Squat end:</th>
+      <th class="header">Deadlift start:</th>
+      <th class="header">Deadlift end:</th>
+      <th class="header">Progress:</th>
+      <th class="header">Days:</th>
     </tr>
 
     <tr *ngFor="let diary of user?.Diaries">
       <th>{{diary.Id}}</th>
-      <th>{{diary.UserId}}</th>
       <th>{{diary.StartDate | date: 'dd.MM.yyyy' }}</th>
       <th>{{diary.EndDate  | date: 'dd.MM.yyyy' }}</th>
-      <th class="tooltip">Conclusions
+      <th class="tooltip">Conclusion
         <span class="tooltiptext">{{diary.Conclusions}}</span>
       </th>
 
-      <th>{{diary.BenchPressStart}}</th>
-      <th>{{diary.BenchPressEnd}}</th>
-      <th>{{diary.SquatStart}}</th>
-      <th>{{diary.SquatEnd}}</th>
-      <th>{{diary.DeadliftStart}}</th>
-      <th>{{diary.DeadliftEnd}}</th>
+      <th>{{diary.BenchPressStart}}kg</th>
+      <th>{{diary.BenchPressEnd}}kg</th>
+      <th>{{diary.SquatStart}}kg</th>
+      <th>{{diary.SquatEnd}}kg</th>
+      <th>{{diary.DeadliftStart}}kg</th>
+      <th>{{diary.DeadliftEnd}}kg</th>
       <th>{{diary.Progress}}</th>
-      <th>{{diary.Days.length}}
+      <th>{{diary.Days.length  }}
         <i class="fa fa-info-circle"
            (click)="toggleModal(ModalType.DAYS, diary)"></i>
       </th>
       <th>
-        <button (click)="toggleModal(ModalType.EDITING, diary)">Edit</button>
+        <i class="fa fa-edit"
+        (click)="toggleModal(ModalType.EDITING, diary)"></i>
       </th>
       <th>
-        <button (click)="toggleModal(ModalType.REMOVING, diary)">Delete</button>
+        <i class="fa fa-trash"
+        (click)="toggleModal(ModalType.REMOVING, diary)"></i>
       </th>
     </tr>
 
