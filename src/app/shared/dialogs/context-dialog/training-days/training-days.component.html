@@ -54,7 +54,7 @@
                pInputText>
       </div>
     </div>
-    <button [disabled]="!date" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="addNewDay()"></button>
+    <button [disabled]="!date" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="addNewDay()"></button>
   </div>
 </div>
 <div [classList]="isEdittingDay ? 'date-editing__on' : 'date-editing__off'">
@@ -62,7 +62,7 @@
     <div class="edit-buttons__container">
       <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
       <button (click)="toggleAdding(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
-      <button (click)="toggleAdding(true, 'training')" pButton pRipple type="button" label="ADD EXERCISE TRAINING" class="p-button-raised p-button-warning"></button>
+<!--      <button (click)="toggleAdding(true, 'training')" pButton pRipple type="button" label="ADD EXERCISE TRAINING" class="p-button-raised p-button-warning"></button>-->
     </div>
     <div *ngIf="isAdding" class="add__form">
       <div *ngIf="addingType === 'dream'">
@@ -85,7 +85,7 @@
                      pInputText>
             </div>
           </div>
-          <button [disabled]="!addDreamForm.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
+          <button [disabled]="!addDreamForm.valid" pButton pRipple type="submit" label="Add" class="submit-green-button p-button-raised p-button-success"></button>
         </form>
       </div>
       <div *ngIf="addingType === 'unit' || addingType === 'training' ">
@@ -112,8 +112,7 @@
                           optionLabel="display"></p-dropdown>
             </div>
           </div>
-          <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
-          <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
+          <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" label="Add" class="submit-green-button p-button-raised p-button-success"></button>
         </form>
       </div>
     </div>
