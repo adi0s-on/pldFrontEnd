@@ -16,6 +16,8 @@ export class DayService {
   public currentDay = new BehaviorSubject<Day>(null);
   public currentDay$ = this.currentDay.asObservable();
 
+  public _currentDay: Day;
+
   readonly PATH = '/api/day';
 
   constructor(private _http: HttpClient,

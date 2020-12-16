@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
 
   userName: FormControl;
   password: FormControl;
-  confirmPassword: FormControl;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService) { }
@@ -25,19 +24,14 @@ export class LoginComponent implements OnInit {
 
   createFormControls(): void {
     this.userName = new FormControl('', [ Validators.required ]);
-    this.password = new FormControl('', [ Validators.required ]);
-    this.confirmPassword = new FormControl('', [ Validators.required ]);
+    this.password = new FormControl('', [ Validators.required, Validators.minLength(6) ]);
   }
 
   createForm(): void {
     this.loginForm = this.formBuilder.group({
       userName: this.userName,
       password: this.password,
-      confirmPassword: this.confirmPassword
     })
-    //   {
-    //   validators: [ CrossFieldValidator ]
-    // })
   }
 
   login(formData): void {

@@ -4,43 +4,43 @@
       <div class="card-body">
         <div class="p-field p-grid">
           <div class="p-col">
-            <input type="text" formControlName="Name" id="Name" class="form-control"/>
+            <input type="text" formControlName="Name" id="Name" class="form-control" pInputText/>
             <label for="Name">First Name</label>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
+            <input type="text" formControlName="Surname" id="Surname" class="form-control" pInputText/>
             <label for="Surname">Surname</label>
-            <input type="text" formControlName="Surname" id="Surname" class="form-control"/>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
+            <input type="text" formControlName="City" id="City" class="form-control" pInputText/>
             <label for="City">City</label>
-            <input type="text" formControlName="City" id="City" class="form-control"/>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
+            <input type="text" formControlName="userName" id="userName" class="form-control" pInputText/>
             <label for="userName">Username</label>
-            <input type="text" formControlName="userName" id="userName" class="form-control"/>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
+            <input type="password" formControlName="password" id="password" class="form-control" pInputText/>
             <label for="password">Password</label>
-            <input type="password" formControlName="password" id="password" class="form-control"/>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
+            <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" pInputText/>
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control"/>
           </div>
         </div>
         <div class="p-field p-grid">
           <div class="p-col">
-            <p-button type="submit" label="register"></p-button>
+            <p-button [disabled]="!(registerForm.controls['password'].dirty && !registerForm.errors.minLength && registerForm.errors.pEqual === true)" type="submit" label="register"></p-button>
           </div>
         </div>
       </div>

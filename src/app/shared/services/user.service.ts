@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {User} from '../models/user.model';
 import {Login} from '../models/login';
-import {URLSearchParams} from 'url';
 import {AuthResponse} from '../models/auth-response';
 import {AuthService} from './auth/auth.service';
-import {log} from 'util';
 import {Register} from '../models/register';
+import {UserDetails} from '../models/user-details';
+import {DiaryService} from './diary.service';
+import {DayService} from './day.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +24,16 @@ export class UserService {
   private _users: User;
 
   constructor(private _http: HttpClient,
-              private _authService: AuthService) {
+              private _authService: AuthService,
+              private _diaryService: DiaryService) {
   }
 
   getUser(userId: string): Promise<User> {
     return new Promise((resolve, reject) => {
       this._http.get<User>(this.PATH + `/get?id=${userId}`).subscribe((_response: User) => {
-        _response.Diaries.map(diary => {
-          diary.StartDate = (diary.StartDate.toString().replace(/\D/g, ''));
-          diary.EndDate = (diary.EndDate.toString().replace(/\D/g, ''));
-          diary.Days.map(day => {
-            day.Date = (day.Date.toString().replace(/\D/g, ''));
-          })
-        });
+        this._users = _response;
         this.user.next(_response);
+        this._diaryService.setDiaries(_response.Diaries);
         if (_response) {
           resolve(_response);
         }
@@ -75,6 +72,35 @@ export class UserService {
   getUserData(): void {
     this._http.post('/api/user/authorization/test', {}).subscribe((res: any) => {
       this._authService.updateUserData(res.Id);
+    })
+  }
+
+  update(userData: {Id, Name, Surname, City}): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this._http.put(this.PATH + '/update', userData).subscribe((res: User) => {
+        if (res) {
+          resolve(res);
+          this._users = res;
+          this.user.next(res);
+        }
+      }, (err) => {
+        reject(err)
+      })
+    })
+  }
+
+  updateDetails(userDetails: {UserId, Height, Weight, Age}): Promise<UserDetails> {
+    return new Promise((resolve, reject) => {
+      this._http.put(this.PATH + '/updatedetails', userDetails).subscribe((res: UserDetails) => {
+        if (res) {
+          resolve(res);
+          this._users.UserDetails = res;
+
+          this.user.next(this._users);
+        }
+      }, (err) => {
+        reject(err)
+      })
     })
   }
 }

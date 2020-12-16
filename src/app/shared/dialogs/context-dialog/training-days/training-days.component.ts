@@ -27,7 +27,7 @@ export class TrainingDaysComponent implements OnInit {
 
   isAddingNewDay: boolean = false;
   isEdittingDay: boolean = false;
-  isAddingDreamOrUnit: boolean = false;
+  isAdding: boolean = false;
 
   addingType: string;
 
@@ -42,6 +42,8 @@ export class TrainingDaysComponent implements OnInit {
 
   exercises: Exercise[] = [];
   exerciseDetails: ExerciseDetails[] = [];
+
+  trainingUnitsList: string[] = [];
 
   constructor(private _dayService: DayService,
               private _diaryService: DiaryService,
@@ -61,7 +63,7 @@ export class TrainingDaysComponent implements OnInit {
     this._dayService.currentDay$.subscribe((res: Day) => {
       this.currentDay = res;
       this.isEdittingDay = false;
-      this.isAddingDreamOrUnit = false;
+      this.isAdding = false;
       this.resetForm();
     });
 
@@ -92,19 +94,18 @@ export class TrainingDaysComponent implements OnInit {
   }
 
   createForm(): void {
+    console.log(this.addingType)
     if (this.addingType === 'dream') {
       this.addDreamForm = this._formBuilder.group({
         Id: this.Id,
         Quality: this.Quality,
         Length: this.Length
       })
-    } else if (this.addingType === 'unit') {
+    } else if (this.addingType === 'unit' || this.addingType === 'training') {
       this.addTrainingUnit = this._formBuilder.group({
         ExerciseId: this.ExerciseId,
         ExerciseDetailsId: this.ExerciseDetailsId
       })
-    } else {
-
     }
   }
 
@@ -113,7 +114,7 @@ export class TrainingDaysComponent implements OnInit {
       this.Id = new FormControl('', []);
       this.Quality = new FormControl('', [Validators.required]);
       this.Length = new FormControl('', [Validators.required]);
-    } else if (this.addingType === 'unit' ) {
+    } else if (this.addingType === 'unit' || this.addingType === 'training') {
       this.ExerciseId = new FormControl(null, [Validators.required]);
       this.ExerciseDetailsId = new FormControl(null, [Validators.required]);
     } else {
@@ -124,8 +125,10 @@ export class TrainingDaysComponent implements OnInit {
   setCurrentDay(day: Day) {
     if (day !== this.currentDay && day !== null) {
       this._dayService.currentDay.next(day);
+      this._dayService._currentDay = day
     } else {
       this._dayService.currentDay.next(null);
+      this._dayService._currentDay = null;
       this.isEdittingDay = false;
       this.isAddingNewDay = false;
     }
@@ -139,8 +142,8 @@ export class TrainingDaysComponent implements OnInit {
     this.isEdittingDay = status;
   }
 
-  toggleAddingDreamOrUnit(status: boolean, type?: string): void {
-    this.isAddingDreamOrUnit = status;
+  toggleAdding(status: boolean, type?: string): void {
+    this.isAdding = status;
     this.addingType = type;
 
     if (status) {
@@ -159,20 +162,42 @@ export class TrainingDaysComponent implements OnInit {
     value.Id = this.currentDay.Id;
     this._dayService.addDream(value).then((res: Dream) => {
       this.currentDay.Dream = res;
+      this._dayService._currentDay = this.currentDay;
       this._dayService.currentDay.next(this.currentDay);
     });
   }
 
-  addNewTrainingUnit(value: any): void {
-    value.ExerciseId = value.ExerciseId.Id;
-    value.ExerciseDetailsId = value.ExerciseDetailsId.Id;
-    console.log(value)
-    this._trainingService.createNewExerciseTraining(this.currentDay.Id, value);
+  submit(value: any): void {
+    if (this.addingType === 'unit') {
+      value.ExerciseId = value.ExerciseId.Id;
+      value.ExerciseDetailsId = value.ExerciseDetailsId.Id;
+      this._trainingService.createNewExerciseTraining(this.currentDay.Id, value);
+    } else if (this.addingType === 'training') {
+      const data: any[] = [];
+      this.trainingUnitsList.forEach((id: string) => {
+        data.push({
+          TrainingUnitId: id,
+          ExerciseId: value.ExerciseId.Id,
+          ExerciseDetailsId: value.ExerciseDetailsId.Id
+        })
+      });
+      this._trainingService.createExerciseTrainingsForUnit(data).then();
+    }
   }
 
   resetForm(): void {
     if (this.addDreamForm) {
       this.addDreamForm.reset();
     }
+  }
+
+  updateCbxIdList(trainingUnitId: string): void {
+    const __i = this.trainingUnitsList.findIndex(id => id ===trainingUnitId);
+    if (__i >= 0) {
+      this.trainingUnitsList = this.trainingUnitsList.filter(id => id !== trainingUnitId);
+    } else {
+      this.trainingUnitsList.push(trainingUnitId);
+    }
+    console.log(this.trainingUnitsList)
   }
 }

@@ -21,16 +21,21 @@
         </span>
       </div>
       <div class="training-unit__data" *ngFor="let trainingUnit of currentDay.TrainingUnits">
-        <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
-          <span>Exercise name: {{ exerciseTraining.Exercise.Name}}</span>
-          <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
-            Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
-          </span>
-          <span *ngIf="exerciseTraining.ExerciseDetails">
-            Series and repeats: {{ exerciseTraining.ExerciseDetails.Series}} x {{ exerciseTraining.ExerciseDetails.Repeats}}
-          </span>
+        <div *ngIf="trainingUnit.ExerciseTrainings.length > 0 && addingType === 'training'" class="exercise-training__cbx">
+          <input (click)="updateCbxIdList(trainingUnit.Id)" type="checkbox">
         </div>
-        <br />
+        <div class="exercise-training__list">
+          <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
+            <span>Exercise name: {{ exerciseTraining.Exercise.Name}}</span>
+            <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
+              Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
+            </span>
+            <span *ngIf="exerciseTraining.ExerciseDetails">
+              Series and repeats: {{ exerciseTraining.ExerciseDetails.Series}} x {{ exerciseTraining.ExerciseDetails.Repeats}}
+            </span>
+            <span class="line__break"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,10 +60,11 @@
 <div [classList]="isEdittingDay ? 'date-editing__on' : 'date-editing__off'">
   <div style="display: inherit" *ngIf="isEdittingDay" >
     <div class="edit-buttons__container">
-      <button (click)="toggleAddingDreamOrUnit(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
-      <button (click)="toggleAddingDreamOrUnit(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
+      <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
+      <button (click)="toggleAdding(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
+      <button (click)="toggleAdding(true, 'training')" pButton pRipple type="button" label="ADD EXERCISE TRAINING" class="p-button-raised p-button-warning"></button>
     </div>
-    <div *ngIf="isAddingDreamOrUnit" class="add__form">
+    <div *ngIf="isAdding" class="add__form">
       <div *ngIf="addingType === 'dream'">
         <form [formGroup]="addDreamForm" (submit)="addNewDream(addDreamForm.value)">
           <div class="p-field p-grid">
@@ -82,8 +88,8 @@
           <button [disabled]="!addDreamForm.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
         </form>
       </div>
-      <div *ngIf="addingType === 'unit'">
-        <form [formGroup]="addTrainingUnit" (submit)="addNewTrainingUnit(addTrainingUnit.value)">
+      <div *ngIf="addingType === 'unit' || addingType === 'training' ">
+        <form [formGroup]="addTrainingUnit" (submit)="submit(addTrainingUnit.value)">
           <div class="p-field p-grid">
             <div class="p-col">
               <label for="ExerciseId" class="p-col-fixed">Exercise</label>
@@ -106,6 +112,7 @@
                           optionLabel="display"></p-dropdown>
             </div>
           </div>
+          <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
           <button [disabled]="!addTrainingUnit.valid" pButton pRipple type="submit" icon="pi pi-check" class="p-button-raised p-button-outlined"></button>
         </form>
       </div>

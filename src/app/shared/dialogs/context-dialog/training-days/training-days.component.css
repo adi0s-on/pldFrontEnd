@@ -41,14 +41,14 @@
 }
 
 .training-unit__data {
-  display: inline-block;
+  display: flex;
+  border-bottom: 2px solid lightgray;
 }
 
 .exercise-training__data {
   display: flex;
   flex-direction: column;
   padding-bottom: .5rem;
-  border-bottom: 1px solid lightgray;
 }
 
 .buttons__container {
@@ -142,4 +142,19 @@ button {
 .add__form label {
   display: inline-block;
   width: 120px;
+}
+
+.exercise-training__cbx {
+  margin: auto .5rem auto 0;
+  width: 1rem;
+}
+
+.training-data__flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-training__list {
+  display: flex;
+  flex-direction: column;
 }

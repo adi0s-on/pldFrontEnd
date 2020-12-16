@@ -5,14 +5,68 @@
         <tr>
           <th>First name:</th>
           <th>Surname:</th>
-          <th>City:</th>
+          <th class="personal-data-button__container">City:
+            <button *ngIf="!isEditingPersonalData"
+                    (click)="isEditingPersonalData = true"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-outlined p-button-warning edit-toggle">
+            </button>
+            <button *ngIf="isEditingPersonalData"
+                    (click)="acceptPersonalChanges()"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-check"
+                    class="p-button-rounded p-button-outlined p-button-success edit-submit">
+            </button>
+            <button *ngIf="isEditingPersonalData"
+                    (click)="cancelPersonalChanges()"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-times"
+                    class="p-button-rounded p-button-outlined p-button-danger edit-submit">
+            </button>
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-user>
-        <tr>
+        <tr *ngIf="!isEditingPersonalData">
           <td>{{ user?.Name }}</td>
           <td>{{ user?.Surname }}</td>
           <td>{{ user?.City }}</td>
+        </tr>
+        <tr *ngIf="isEditingPersonalData">
+          <td class="personal-data__td">
+            <div class="p-col">
+              <input class="personal-data__input"
+                     type="text"
+                     [placeholder]="'Enter name'"
+                     [(ngModel)]="name"
+                     pInputText>
+            </div>
+          </td>
+          <td class="personal-data__td">
+            <div class="p-col">
+              <input class="personal-data__input"
+                     type="text"
+                     [placeholder]="'Enter surname'"
+                     [(ngModel)]="surName"
+                     pInputText>
+            </div>
+          </td>
+          <td class="personal-data__td">
+            <div class="p-col">
+              <input class="personal-data__input"
+                     type="text"
+                     [placeholder]="'Enter city'"
+                     [(ngModel)]="city"
+                     pInputText>
+            </div>
+          </td>
         </tr>
       </ng-template>
     </p-table>
@@ -23,17 +77,73 @@
           <th>Height:</th>
           <th>Weight:</th>
           <th>Age:</th>
-          <th>BMR:</th>
           <th>BMI:</th>
+          <th class="details-data-button__container">BMR:
+            <button *ngIf="!isEditingUserDetails"
+                    (click)="isEditingUserDetails = true"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-outlined p-button-warning edit-toggle">
+            </button>
+            <button *ngIf="isEditingUserDetails"
+                    (click)="acceptDetailsChanges()"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-check"
+                    class="p-button-rounded p-button-outlined p-button-success edit-submit">
+            </button>
+            <button *ngIf="isEditingUserDetails"
+                    (click)="cancelDetailsChanges()"
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-times"
+                    class="p-button-rounded p-button-outlined p-button-danger edit-submit">
+            </button>
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-userDetails>
-        <tr>
+        <tr *ngIf="!isEditingUserDetails">
           <td>{{ userDetails?.Height }}</td>
           <td>{{ userDetails?.Weight }}</td>
           <td>{{ userDetails?.Age }}</td>
-          <td>{{ userDetails?.BMR }}</td>
           <td>{{ userDetails?.BMI }}</td>
+          <td>{{ userDetails?.BMR }}</td>
+        </tr>
+        <tr *ngIf="isEditingUserDetails">
+          <td class="details-data__td">
+            <div class="p-col">
+              <input class="details-data__input"
+                     type="number"
+                     [placeholder]="'Enter height'"
+                     [(ngModel)]="height"
+                     pInputText>
+            </div>
+          </td>
+          <td class="details-data__td">
+            <div class="p-col">
+              <input class="details-data__input"
+                     type="number"
+                     [placeholder]="'Enter weight'"
+                     [(ngModel)]="weight"
+                     pInputText>
+            </div>
+          </td>
+          <td class="details-data__td">
+            <div class="p-col">
+              <input class="details-data__input"
+                     type="number"
+                     [placeholder]="'Enter age'"
+                     [(ngModel)]="age"
+                     pInputText>
+            </div>
+          </td>
+          <td>{{ userDetails?.BMI }}</td>
+          <td>{{ userDetails?.BMR }}</td>
         </tr>
       </ng-template>
     </p-table>
@@ -67,7 +177,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-userDiary let-i="rowIndex">
       <tr>
-        <td>{{ i + 1 }}</td>
+        <td>No. {{ i + 1 }} (Id {{ userDiary.Id }})</td>
         <td>{{ userDiary?.StartDate | date: 'dd.MM.yyyy'  }}</td>
         <td>{{ userDiary?.EndDate | date: 'dd.MM.yyyy'  }}</td>
         <td class="info__icon">
@@ -89,7 +199,7 @@
         <td>{{ userDiary?.DeadliftEnd }} kg</td>
         <td>{{ userDiary?.Progress }}</td>
         <td class="days-info__icon">
-          {{ userDiary?.Days.length }}
+          {{ (userDiary?.Days ? userDiary?.Days?.length : '0') }}
           <button (click)="toggleModal(ModalType.DAYS, userDiary)"
                   pButton
                   pRipple
@@ -117,54 +227,6 @@
       </tr>
     </ng-template>
   </p-table>
-
-
-<!--  <table style="width:max-content">-->
-<!--    <tr>-->
-<!--      <th class="header">Diary ID:</th>-->
-<!--      <th class="header">Start date:</th>-->
-<!--      <th class="header">End date:</th>-->
-<!--      <th class="header">Conclusions:</th>-->
-<!--      <th class="header">Bench press start:</th>-->
-<!--      <th class="header">Bench press end:</th>-->
-<!--      <th class="header">Squat start:</th>-->
-<!--      <th class="header">Squat end:</th>-->
-<!--      <th class="header">Deadlift start:</th>-->
-<!--      <th class="header">Deadlift end:</th>-->
-<!--      <th class="header">Progress:</th>-->
-<!--      <th class="header">Days:</th>-->
-<!--    </tr>-->
-
-<!--    <tr *ngFor="let diary of user?.Diaries">-->
-<!--      <th>{{diary.Id}}</th>-->
-<!--      <th>{{diary.StartDate | date: 'dd.MM.yyyy' }}</th>-->
-<!--      <th>{{diary.EndDate  | date: 'dd.MM.yyyy' }}</th>-->
-<!--      <th class="tooltip">Conclusion-->
-
-<!--      </th>-->
-
-<!--      <th>{{diary.BenchPressStart}}kg</th>-->
-<!--      <th>{{diary.BenchPressEnd}}kg</th>-->
-<!--      <th>{{diary.SquatStart}}kg</th>-->
-<!--      <th>{{diary.SquatEnd}}kg</th>-->
-<!--      <th>{{diary.DeadliftStart}}kg</th>-->
-<!--      <th>{{diary.DeadliftEnd}}kg</th>-->
-<!--      <th>{{diary.Progress}}</th>-->
-<!--      <th>{{diary.Days.length  }}-->
-<!--        <i class="fa fa-info-circle"-->
-<!--           (click)="toggleModal(ModalType.DAYS, diary)"></i>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <i class="fa fa-edit"-->
-<!--        (click)="toggleModal(ModalType.EDITING, diary)"></i>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <i class="fa fa-trash"-->
-<!--        (click)="toggleModal(ModalType.REMOVING, diary)"></i>-->
-<!--      </th>-->
-<!--    </tr>-->
-
-<!--  </table>-->
 
   <app-context-dialog [displayModal]="modalToDisplay"
                       [diary]="diary"

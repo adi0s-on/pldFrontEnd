@@ -8,6 +8,8 @@ import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import {RippleModule} from 'primeng/ripple';
 import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import {ButtonModule} from 'primeng/button';
     TableModule,
     TooltipModule,
     RippleModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    FormsModule
   ],
   declarations: [
     MainpageuserComponent,

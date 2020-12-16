@@ -22,6 +22,7 @@ export class EditFormComponent implements OnInit {
   editDiaryForm: FormGroup;
   _diary: Diaries;
 
+  Id: FormControl;
   UserId: FormControl;
   StartDate: FormControl;
   EndDate: FormControl;
@@ -52,22 +53,24 @@ export class EditFormComponent implements OnInit {
   }
 
   createFormControls(): void {
+    this.Id = new FormControl(this._diary?.Id, [Validators.required]);
     this.UserId = new FormControl({ value: this._diary?.UserId, disabled: true}, [Validators.required]);
     this.StartDate = new FormControl(this._diary?.StartDate, [Validators.required]);
-    this.EndDate = new FormControl(this._diary?.EndDate, [Validators.required]);
-    this.Conclusions = new FormControl(this._diary?.Conclusions, [Validators.required]);
+    this.EndDate = new FormControl(this._diary?.EndDate, []);
+    this.Conclusions = new FormControl(this._diary?.Conclusions, []);
     this.BenchPressStart = new FormControl(this._diary?.BenchPressStart, [Validators.required]);
     this.SquatStart = new FormControl(this._diary?.SquatStart, [Validators.required]);
     this.DeadliftStart = new FormControl(this._diary?.DeadliftStart, [Validators.required]);
-    this.BenchPressEnd = new FormControl(this._diary?.BenchPressEnd, [Validators.required]);
-    this.SquatEnd = new FormControl(this._diary?.SquatEnd, [Validators.required]);
-    this.DeadliftEnd = new FormControl(this._diary?.DeadliftEnd, [Validators.required]);
-    this.Progress = new FormControl(this._diary?.Progress, [Validators.required]);
-    this.Days = new FormControl(this._diary?.Days, [Validators.required]);
+    this.BenchPressEnd = new FormControl(this._diary?.BenchPressEnd, []);
+    this.SquatEnd = new FormControl(this._diary?.SquatEnd, []);
+    this.DeadliftEnd = new FormControl(this._diary?.DeadliftEnd, []);
+    this.Progress = new FormControl(this._diary?.Progress, []);
+    this.Days = new FormControl(this._diary?.Days, []);
   }
 
   createForm(): void {
     this.editDiaryForm = this.formBuilder.group({
+      Id: this.Id,
       UserId: this.UserId,
       StartDate: this.StartDate,
       EndDate: this.EndDate,
@@ -86,7 +89,7 @@ export class EditFormComponent implements OnInit {
   submit(formValue: any): void {
     this.editDiaryForm.markAllAsTouched();
     if (this.editDiaryForm.valid) {
-      this.diaryService.addDiary(formValue).then((res) => {
+      this.diaryService.editDiary(formValue).then((res) => {
         this.editDiaryForm.reset();
         this.closeModal.emit(true);
       });

@@ -53,12 +53,12 @@ export class AddFormDiaryComponent implements OnInit {
 
   createFormControls(): void {
     this.UserId = new FormControl(this._authService._credentials.id, [ Validators.required ]);
-    this.StartDate = new FormControl(null, []);
+    this.StartDate = new FormControl(null, [ Validators.required ]);
     this.EndDate = new FormControl(null, []);
     this.Conclusions = new FormControl(null, []);
-    this.BenchPressStart = new FormControl(null, []);
-    this.SquatStart = new FormControl(null, []);
-    this.DeadliftStart = new FormControl(null, []);
+    this.BenchPressStart = new FormControl(null, [ Validators.required ]);
+    this.SquatStart = new FormControl(null, [ Validators.required ]);
+    this.DeadliftStart = new FormControl(null, [ Validators.required ]);
     this.BenchPressEnd = new FormControl(null, []);
     this.SquatEnd = new FormControl(null, []);
     this.DeadliftEnd = new FormControl(null, []);

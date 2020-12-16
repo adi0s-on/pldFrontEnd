@@ -1,23 +1,12 @@
 <form [formGroup]="addDiaryForm" (ngSubmit)="submit(addDiaryForm.value)">
     <div class="p-field p-grid">
         <div class="p-col">
-            <label for="UserId" class="p-col-fixed">Your id</label>
-            <input id="UserId"
-                   disabled="disabled"
-                    type="number"
-                    formControlName="UserId"
-                    pInputText>
-        </div>
-    </div>
-    <div class="p-field p-grid">
-        <div class="p-col">
             <label for="StartDate" class="p-col-fixed">Start date  </label>
             <input class="xd" id="StartDate"
                     type="datetime-local"
                     formControlName="StartDate"
                    [placeholder]="currentDate"
                     pInputText>
-<!--          DATEPICKER -->
         </div>
     </div>
     <div class="p-field p-grid">
@@ -104,6 +93,7 @@
     <div>
       <button pButton
               pRipple
+              [disabled]="!addDiaryForm.valid"
               type="submit" label="ADD"
               class="p-button-raised p-button-success">
 
