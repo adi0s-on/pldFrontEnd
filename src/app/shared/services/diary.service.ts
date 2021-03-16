@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Diaries} from '../models/diaries.model';
 import * as moment from 'moment';
+import {ExercisesWeekSummary} from '../models/exercises-week-summary';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +85,9 @@ export class DiaryService {
   setCurrentDiary(diary: Diaries): void {
     this.currentDiary.next(diary);
     this._currentDiary = diary;
+  }
+
+  getWeekSummary(diaryId: number, dayId: number): Observable<ExercisesWeekSummary> {
+    return this.http.post<ExercisesWeekSummary>(this.PATH + `/weeksummary?diaryId=${diaryId}&dayId=${dayId}`, {});
   }
 }

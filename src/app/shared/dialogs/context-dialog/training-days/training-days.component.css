@@ -162,3 +162,35 @@ button {
 .submit-green-button {
   width: 10vw;
 }
+
+.week-summary-container {
+  width: 0;
+  transition: width .5s ease-in-out;
+}
+
+.week-summary {
+  margin: 0 1rem;
+  width: 300px;
+  transition: width .5s ease-in-out;
+}
+
+.week-summary-exercises {
+  display: flex;
+  flex-direction: column;
+}
+
+.week-title {
+  text-align: center;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: limegreen;
+}

@@ -5,4 +5,6 @@ export class Exercise {
   Name: string;
   Description: string;
   ExerciseEquipment: ExerciseEquipment;
+  BodyPart: string;
+  PholderBodyPart: { Name: string };
 }

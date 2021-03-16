@@ -9,6 +9,8 @@ import {ExerciseService} from '../../../services/exercise.service';
 import {Exercise} from '../../../models/exercise';
 import {ExerciseDetails} from '../../../models/exercise-details';
 import {TrainingService} from '../../../services/training.service';
+import {ExercisesWeekSummary} from '../../../models/exercises-week-summary';
+import {ExerciseStatus} from '../../../models/exercise-status';
 
 @Component({
   selector: 'app-training-days',
@@ -44,6 +46,8 @@ export class TrainingDaysComponent implements OnInit {
   exerciseDetails: ExerciseDetails[] = [];
 
   trainingUnitsList: string[] = [];
+
+  weekSummary: ExercisesWeekSummary;
 
   constructor(private _dayService: DayService,
               private _diaryService: DiaryService,
@@ -126,11 +130,15 @@ export class TrainingDaysComponent implements OnInit {
     if (day !== this.currentDay && day !== null) {
       this._dayService.currentDay.next(day);
       this._dayService._currentDay = day
+      this._diaryService.getWeekSummary(+this._diaryService._currentDiary.Id, +this._dayService._currentDay.Id).subscribe((res) => {
+        this.weekSummary = res;
+      })
     } else {
       this._dayService.currentDay.next(null);
       this._dayService._currentDay = null;
       this.isEdittingDay = false;
       this.isAddingNewDay = false;
+      this.weekSummary = null;
     }
   }
 
@@ -198,6 +206,21 @@ export class TrainingDaysComponent implements OnInit {
     } else {
       this.trainingUnitsList.push(trainingUnitId);
     }
-    console.log(this.trainingUnitsList)
+  }
+
+  getCorrectColor(status: ExerciseStatus): string {
+    if(status.ExercisesDone <= 0) {
+      return 'red';
+    } else {
+      if (status.ExercisesToDo * .5 >= status.ExercisesDone) {
+        return 'red';
+      } else if (status.ExercisesToDo * .5 < status.ExercisesDone) {
+        if (status.ExercisesDone >= status.ExercisesToDo) {
+          return 'green';
+        }
+        return 'yellow';
+      }
+    }
+    return '';
   }
 }

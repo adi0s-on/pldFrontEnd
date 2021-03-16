@@ -4,9 +4,10 @@
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
-          <col style="width: 30%">
-          <col style="width: 30%">
-          <col style="width: 30%">
+          <col style="width: 22.5%">
+          <col style="width: 22.5%">
+          <col style="width: 22.5%">
+          <col style="width: 22.5%">
         </colgroup>
       </ng-template>
       <ng-template pTemplate="header">
@@ -23,6 +24,7 @@
           <th>Name:</th>
           <th>Description:</th>
           <th>Equipment name:</th>
+          <th>Body part:</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-exercise let-i="rowIndex">
@@ -31,6 +33,7 @@
           <td>{{ exercise?.Name }}</td>
           <td>{{ exercise?.Description }}</td>
           <td>{{ exercise?.ExerciseEquipment?.Name }}</td>
+          <td>{{ exercise?.BodyPart }}</td>
         </tr>
       </ng-template>
     </p-table>

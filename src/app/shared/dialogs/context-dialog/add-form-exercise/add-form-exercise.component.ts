@@ -25,8 +25,18 @@ export class AddFormExerciseComponent implements OnInit {
   Name: FormControl;
   Description: FormControl;
   ExerciseEquipment: FormControl;
+  PholderBodyPart: FormControl;
 
   exerciseEquipments: ExerciseEquipment[] = [];
+  exerciseBodyParts: any[] = [
+    {Name: 'Klatka'},
+    {Name: 'Plecy'},
+    {Name: 'Nogi'},
+    {Name: 'Barki'},
+    {Name: 'Biceps'},
+    {Name: 'Triceps'},
+    {Name: 'Brzuch'}
+  ];
 
   constructor(private formBuilder: FormBuilder,
               private diaryService: DiaryService,
@@ -54,22 +64,24 @@ export class AddFormExerciseComponent implements OnInit {
     this.Name = new FormControl('', [ Validators.required ]);
     this.Description = new FormControl('', [ Validators.required ]);
     this.ExerciseEquipment = new FormControl(null, [ Validators.required ]);
+    this.PholderBodyPart = new FormControl(null, [ Validators.required ]);
   }
 
   createForm(): void {
     this.addExerciseForm = this.formBuilder.group({
       Name: this.Name,
       Description: this.Description,
-      ExerciseEquipment: this.ExerciseEquipment
+      ExerciseEquipment: this.ExerciseEquipment,
+      PholderBodyPart: this.PholderBodyPart
     })
   }
 
   submit(formValue: Exercise): void {
-    console.log(formValue)
     const data = {
       Name: formValue.Name,
       Description: formValue.Description,
-      ExerciseEquipmentId: formValue.ExerciseEquipment.Id
+      ExerciseEquipmentId: formValue.ExerciseEquipment.Id,
+      BodyPart: formValue.PholderBodyPart.Name
     };
 
     this._exerciseService.createNewExercise(data).then(() => {

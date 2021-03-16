@@ -15,7 +15,6 @@
              type="text"
              formControlName="Description"
              pInputText>
-      <!--          DATEPICKER -->
     </div>
   </div>
   <div class="p-field p-grid">
@@ -26,6 +25,17 @@
                   formControlName="ExerciseEquipment"
                   [options]="exerciseEquipments"
                   placeholder="Equipment name"
+                  optionLabel="Name"></p-dropdown>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <div class="p-col">
+      <label for="PholderBodyPart" class="p-col-fixed">Equipment name</label>
+      <p-dropdown id="PholderBodyPart"
+                  inputId="PholderBodyPart"
+                  formControlName="PholderBodyPart"
+                  [options]="exerciseBodyParts"
+                  placeholder="Body part"
                   optionLabel="Name"></p-dropdown>
     </div>
   </div>

@@ -42,6 +42,15 @@
   <div class="collapse__container" *ngIf="currentDay">
     <button pButton pRipple type="button" label="<" class="p-button-raised p-button-secondary" (click)="setCurrentDay(null)"></button>
   </div>
+  <div class="week-summary-container {{weekSummary ? 'week-summary' : ''}}">
+    <div *ngIf="weekSummary">
+      <h4 class="week-title">Tydzień</h4>
+      <h3 class="week-title">{{weekSummary.StartDate | date: 'dd.MM.yyyy'}} - {{weekSummary.EndDate | date: 'dd.MM.yyyy'}}</h3>
+      <div class="week-summary-exercises">
+        <span *ngFor="let status of weekSummary.WeekSummary" class="{{getCorrectColor(status)}}">{{ status.BodyPart }}: wykonano {{status.ExercisesDone}} z {{status.ExercisesToDo}}</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div [classList]="isAddingNewDay ? 'date-adding__on' : 'date-adding__off'">
   <div class="adding__container" *ngIf="isAddingNewDay">
@@ -62,7 +71,6 @@
     <div class="edit-buttons__container">
       <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
       <button (click)="toggleAdding(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
-<!--      <button (click)="toggleAdding(true, 'training')" pButton pRipple type="button" label="ADD EXERCISE TRAINING" class="p-button-raised p-button-warning"></button>-->
     </div>
     <div *ngIf="isAdding" class="add__form">
       <div *ngIf="addingType === 'dream'">
