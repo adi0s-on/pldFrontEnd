@@ -48,7 +48,7 @@
     </div>
 
     <div *ngIf="weekSummary">
-      <h4 class="week-title">Tydzień</h4>
+      <h3 class="week-title" style="margin: unset !important;">Week</h3>
       <h3 class="week-title">{{weekSummary.StartDate | date: 'dd.MM.yyyy'}} - {{weekSummary.EndDate | date: 'dd.MM.yyyy'}}</h3>
       <div class="week-summary-exercises">
         <span *ngFor="let status of weekSummary.WeekSummary" class="{{getCorrectColor(status)}}">{{ status.BodyPart }}: wykonano {{status.ExercisesDone}} z {{status.ExercisesToDo}}</span>
