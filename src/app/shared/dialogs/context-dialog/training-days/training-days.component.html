@@ -2,7 +2,7 @@
   <div class="days-list">
     <div class="days">
       <span *ngFor="let day of diary?.Days" (click)="setCurrentDay(day)" [className]="day.Id === currentDay?.Id ? 'font__bold' : ''">
-        {{ day.Date | date: 'dd.MM.yyyy' }}
+        {{ fixDate(day.Date) | date: 'dd.MM.yyyy' }}
       </span>
     </div>
     <div class="buttons__container">
@@ -43,6 +43,10 @@
     <button pButton pRipple type="button" label="<" class="p-button-raised p-button-secondary" (click)="setCurrentDay(null)"></button>
   </div>
   <div class="week-summary-container {{weekSummary ? 'week-summary' : ''}}">
+    <div class="spinner-container" *ngIf="weekSummaryLoading && weekSummary">
+      <p-progressSpinner class="spinner"></p-progressSpinner>
+    </div>
+
     <div *ngIf="weekSummary">
       <h4 class="week-title">Tydzień</h4>
       <h3 class="week-title">{{weekSummary.StartDate | date: 'dd.MM.yyyy'}} - {{weekSummary.EndDate | date: 'dd.MM.yyyy'}}</h3>

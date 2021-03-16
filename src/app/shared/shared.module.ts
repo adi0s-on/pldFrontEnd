@@ -15,6 +15,7 @@ import {AddFormExerciseComponent} from './dialogs/context-dialog/add-form-exerci
 import {DropdownModule} from 'primeng/dropdown';
 import {AddFormExerciseDetailsComponent} from './dialogs/context-dialog/add-form-exercise-details/add-form-exercise-details.component';
 import {AddFormExerciseEquipmentComponent} from './dialogs/context-dialog/add-form-exercise-equipment/add-form-exercise-equipment.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {AddFormExerciseEquipmentComponent} from './dialogs/context-dialog/add-fo
     InputTextModule,
     RippleModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    ProgressSpinnerModule
   ],
   declarations: [
     ContextDialogComponent,

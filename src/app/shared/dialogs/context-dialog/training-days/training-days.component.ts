@@ -11,6 +11,7 @@ import {ExerciseDetails} from '../../../models/exercise-details';
 import {TrainingService} from '../../../services/training.service';
 import {ExercisesWeekSummary} from '../../../models/exercises-week-summary';
 import {ExerciseStatus} from '../../../models/exercise-status';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-training-days',
@@ -48,6 +49,7 @@ export class TrainingDaysComponent implements OnInit {
   trainingUnitsList: string[] = [];
 
   weekSummary: ExercisesWeekSummary;
+  weekSummaryLoading: boolean;
 
   constructor(private _dayService: DayService,
               private _diaryService: DiaryService,
@@ -129,9 +131,11 @@ export class TrainingDaysComponent implements OnInit {
   setCurrentDay(day: Day) {
     if (day !== this.currentDay && day !== null) {
       this._dayService.currentDay.next(day);
-      this._dayService._currentDay = day
+      this._dayService._currentDay = day;
+      this.weekSummaryLoading = true;
       this._diaryService.getWeekSummary(+this._diaryService._currentDiary.Id, +this._dayService._currentDay.Id).subscribe((res) => {
         this.weekSummary = res;
+        this.weekSummaryLoading = false;
       })
     } else {
       this._dayService.currentDay.next(null);
@@ -222,5 +226,9 @@ export class TrainingDaysComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  fixDate(date: string) {
+    return moment(+date).add(-1, 'day').format();
   }
 }
