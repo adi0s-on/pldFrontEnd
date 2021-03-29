@@ -1,0 +1,107 @@
+.content {
+  display: flex;
+  margin: 2rem;
+}
+
+/* tabele danych  */
+.basic-data__tables {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.action__icon button:first-child {
+  margin-right: .5rem;
+}
+
+.personal-data__input, .details-data__input {
+  width: 100%;
+}
+
+.personal-data__td, .details-data__td {
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+  padding-left: 7px !important;
+}
+
+.personal-data-button__container,
+.details-data-button__container {
+  position: relative;
+}
+
+.edit-toggle {
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  bottom: 0;
+  transform: translateY(25%);
+}
+
+.edit-submit:nth-of-type(1) {
+  position: absolute;
+  right: 3.5rem;
+  top: 0;
+  bottom: 0;
+  transform: translateY(25%);
+}
+
+.edit-submit:nth-of-type(2) {
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  bottom: 0;
+  transform: translateY(25%);
+}
+
+/* avatar uploader */
+.user-profile__wrapper {
+  padding-right: 1rem;
+  width: 50%;
+}
+
+.avatar-uploader__container {
+  padding-left: 1rem;
+  text-align: center;
+  width: 50%;
+}
+
+.uploader__frame {
+  transition: all 300ms ease;
+  width: 300px;
+  height: 300px;
+  background: black;
+  margin: auto;
+}
+
+.uploader__frame:hover {
+  cursor: pointer;
+  background-color: #fcee09 !important;
+  opacity: 0.2 !important;
+}
+
+.image__placeholder {
+  width: 300px;
+  height: 300px;
+}
+
+.file__listing {
+  display: flex;
+  margin: auto;
+  width: 300px;
+}
+
+.file__listing span {
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 27px;
+  margin: 8px 0 auto auto;
+  float: right;
+}
+
+.file__listing p {
+  text-align: left;
+  width: 270px;
+  height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

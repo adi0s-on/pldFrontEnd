@@ -1,0 +1,167 @@
+<div class="content">
+
+  <div class="user-profile__wrapper">
+
+    <div class="basic-data__tables">
+      <p-table class="user-data__table" [value]="[user]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>First name:</th>
+            <th>Surname:</th>
+            <th class="personal-data-button__container">City:
+              <button *ngIf="!isEditingPersonalData"
+                      (click)="isEditingPersonalData = true"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-outlined p-button-warning edit-toggle">
+              </button>
+              <button *ngIf="isEditingPersonalData"
+                      (click)="acceptPersonalChanges()"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-check"
+                      class="p-button-rounded p-button-outlined p-button-success edit-submit">
+              </button>
+              <button *ngIf="isEditingPersonalData"
+                      (click)="cancelPersonalChanges()"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-times"
+                      class="p-button-rounded p-button-outlined p-button-danger edit-submit">
+              </button>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr *ngIf="!isEditingPersonalData">
+            <td>{{ user?.Name }}</td>
+            <td>{{ user?.Surname }}</td>
+            <td>{{ user?.City }}</td>
+          </tr>
+          <tr *ngIf="isEditingPersonalData">
+            <td class="personal-data__td">
+              <div class="p-col">
+                <input class="personal-data__input"
+                       type="text"
+                       [placeholder]="'Enter name'"
+                       [(ngModel)]="name"
+                       pInputText>
+              </div>
+            </td>
+            <td class="personal-data__td">
+              <div class="p-col">
+                <input class="personal-data__input"
+                       type="text"
+                       [placeholder]="'Enter surname'"
+                       [(ngModel)]="surName"
+                       pInputText>
+              </div>
+            </td>
+            <td class="personal-data__td">
+              <div class="p-col">
+                <input class="personal-data__input"
+                       type="text"
+                       [placeholder]="'Enter city'"
+                       [(ngModel)]="city"
+                       pInputText>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+      <p-table class="user-details__table" [value]="[user?.UserDetails]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Height:</th>
+            <th>Weight:</th>
+            <th>Age:</th>
+            <th>BMI:</th>
+            <th class="details-data-button__container">BMR:
+              <button *ngIf="!isEditingUserDetails"
+                      (click)="isEditingUserDetails = true"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-outlined p-button-warning edit-toggle">
+              </button>
+              <button *ngIf="isEditingUserDetails"
+                      (click)="acceptDetailsChanges()"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-check"
+                      class="p-button-rounded p-button-outlined p-button-success edit-submit">
+              </button>
+              <button *ngIf="isEditingUserDetails"
+                      (click)="cancelDetailsChanges()"
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-times"
+                      class="p-button-rounded p-button-outlined p-button-danger edit-submit">
+              </button>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-userDetails>
+          <tr *ngIf="!isEditingUserDetails">
+            <td>{{ userDetails?.Height }}</td>
+            <td>{{ userDetails?.Weight }}</td>
+            <td>{{ userDetails?.Age }}</td>
+            <td>{{ userDetails?.BMI }}</td>
+            <td>{{ userDetails?.BMR }}</td>
+          </tr>
+          <tr *ngIf="isEditingUserDetails">
+            <td class="details-data__td">
+              <div class="p-col">
+                <input class="details-data__input"
+                       type="number"
+                       [placeholder]="'Enter height'"
+                       [(ngModel)]="height"
+                       pInputText>
+              </div>
+            </td>
+            <td class="details-data__td">
+              <div class="p-col">
+                <input class="details-data__input"
+                       type="number"
+                       [placeholder]="'Enter weight'"
+                       [(ngModel)]="weight"
+                       pInputText>
+              </div>
+            </td>
+            <td class="details-data__td">
+              <div class="p-col">
+                <input class="details-data__input"
+                       type="number"
+                       [placeholder]="'Enter age'"
+                       [(ngModel)]="age"
+                       pInputText>
+              </div>
+            </td>
+            <td>{{ userDetails?.BMI }}</td>
+            <td>{{ userDetails?.BMR }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div class="avatar-uploader__container">
+    <img class="image__placeholder" *ngIf="!!avatarUrl" src="{{ avatarUrl }}" >
+    <div *ngIf="!avatarUrl" class="uploader__frame" (click)="fileUploader.click()" dragAndDrop (onFileDropped)="uploadFile($event)"></div>
+    <input hidden #fileUploader type="file" (change)="uploadFile($event.target.files[0])">
+
+    <div *ngIf="!!avatar" class="file__listing">
+      <p> {{ avatar.name }}</p>
+      <span (click)="deleteFile()">&times;</span>
+    </div>
+  </div>
+
+</div>

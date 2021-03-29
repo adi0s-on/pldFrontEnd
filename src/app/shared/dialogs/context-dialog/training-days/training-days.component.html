@@ -2,7 +2,7 @@
   <div class="days-list">
     <div class="days">
       <span *ngFor="let day of diary?.Days" (click)="setCurrentDay(day)" [className]="day.Id === currentDay?.Id ? 'font__bold' : ''">
-        {{ fixDate(day.Date) | date: 'dd.MM.yyyy' }}
+        {{ day.Date | date: 'dd.MM.yyyy' }}
       </span>
     </div>
     <div class="buttons__container">

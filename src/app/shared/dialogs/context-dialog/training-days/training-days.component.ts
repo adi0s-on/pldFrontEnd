@@ -164,7 +164,10 @@ export class TrainingDaysComponent implements OnInit {
   }
 
   addNewDay(): void {
-    this._dayService.createDay({Date: this.date, DiaryId: this.diary.Id}).then((response: Day) => {
+    this._dayService.createDay({
+      Date: moment(this.date).add(8, 'hour').format(),
+      DiaryId: this.diary.Id
+    }).then((response: Day) => {
       this.toggleAddingNewDay(false);
       this.date = '';
     })
@@ -226,9 +229,5 @@ export class TrainingDaysComponent implements OnInit {
       }
     }
     return '';
-  }
-
-  fixDate(date: string) {
-    return moment(+date).add(-1, 'day').format();
   }
 }

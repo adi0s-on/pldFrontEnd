@@ -72,14 +72,7 @@ export class MainpageuserComponent implements OnInit {
   ngOnInit(): void {
     const credentials = this._authService.getCredentials;
     if (credentials.id) {
-      this.userService.getUser(credentials.id).then((res) => {
-        this.name = this._dName = res.Name;
-        this.surName = this._dSurName = res.Surname;
-        this.city = this._dCity = res.City;
-        this.height = this._dheight = res.UserDetails.Height;
-        this.weight = this._dweight = res.UserDetails.Weight;
-        this.age = this._dage = res.UserDetails.Age;
-      });
+      this.userService.getUser(credentials.id).then();
     }
   }
 
@@ -87,44 +80,5 @@ export class MainpageuserComponent implements OnInit {
     this.operationType = operationType;
     this._diaryService.setCurrentDiary(diary);
     this.modalToDisplay = true;
-  }
-
-  cancelPersonalChanges(): void {
-    this.isEditingPersonalData = false;
-    this.name = this._dName;
-    this.surName = this._dSurName;
-    this.city = this._dCity;
-  }
-
-  acceptPersonalChanges(): void {
-    this.userService.update({Id: this.user.Id, Name: this.name, Surname: this.surName, City: this.city}).then((res: User) => {
-      this.isEditingPersonalData = false;
-      this._dName = res.Name;
-      this._dSurName = res.Surname;
-      this._dCity = res.City;
-    })
-  }
-
-  cancelDetailsChanges(): void {
-    this.isEditingUserDetails = false;
-    this.height = this._dheight;
-    this.weight = this._dweight;
-    this.age = this._dage;
-
-  }
-
-  acceptDetailsChanges(): void {
-    this.userService.updateDetails({
-        UserId: this.user.Id,
-        Height: this.height,
-        Weight: this.weight,
-        Age: this.age
-      }).then((res: UserDetails) => {
-      this.isEditingUserDetails = false;
-      this._dheight = res.Height;
-      this._dweight = res.Weight;
-      this._dage = res.Age;
-
-    })
   }
 }

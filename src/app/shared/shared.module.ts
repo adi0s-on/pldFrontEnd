@@ -16,6 +16,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AddFormExerciseDetailsComponent} from './dialogs/context-dialog/add-form-exercise-details/add-form-exercise-details.component';
 import {AddFormExerciseEquipmentComponent} from './dialogs/context-dialog/add-form-exercise-equipment/add-form-exercise-equipment.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {DragAndDropDirective} from './directive/drag-and-drop.directive';
 
 @NgModule({
   imports: [
@@ -37,10 +38,12 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     RemoveFormDiaryComponent,
     AddFormExerciseComponent,
     AddFormExerciseDetailsComponent,
-    AddFormExerciseEquipmentComponent
+    AddFormExerciseEquipmentComponent,
+    DragAndDropDirective
   ],
   exports: [
-    ContextDialogComponent
+    ContextDialogComponent,
+    DragAndDropDirective
   ],
   providers: [
     HeaderService
