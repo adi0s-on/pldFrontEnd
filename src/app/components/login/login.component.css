@@ -1,15 +1,22 @@
 .container {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
+  top: 32vh;
+  left: 0;
+  right: 0; 
+  position: absolute;
+  background: transparent url("src/assets/BackgroundWhite-min.jpg");
   flex-direction: column;
-  position: relative;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  height: fit-content;
+  width: fit-content; 
+  border: 2px solid #222831;
+  border-radius: 5px;
+
 }
 
 h2 {
   text-align: center;
   text-transform: uppercase ;
-  color: #2196F3;
+  color: #222831;
 }
 
 ::ng-deep p-button button {
@@ -19,10 +26,8 @@ h2 {
 
 .container__content {
   margin: auto auto 1rem auto;
-  width: 30%;
   height: fit-content;
-  border: 1px solid #2196F3;
-  border-radius: 5px;
+  padding-top: 0.8rem;
 }
 
 .info__content {
@@ -36,19 +41,25 @@ h2 {
 
 label {
   position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
   margin-left: .8rem;
   padding: .5rem .05rem;
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 input:focus + label, input.p-filled + label {
   bottom: 1.5rem;
+  top: -.8rem;
   font-size: .75rem;
-  margin-left: 1.3rem;
-  transition: all .3s ease-in-out;
+  font-weight: bold;
+  margin-left: 1.0rem;
+  padding: 2px 5px 2px 5px;
+  transition: all .2s ease-in-out;
   background: white;
+  border-radius: 5px;
+  color: #222831;
 }
 
 input {
@@ -60,4 +71,18 @@ a {
   cursor: pointer;
   color: #2196F3;
   font-weight: bolder;
+}
+
+.login-button
+{
+  padding-top: 1.5rem;
+  width: 100%;
+}
+ 
+.carousel-login
+{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }

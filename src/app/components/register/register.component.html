@@ -42,12 +42,12 @@
           <div class="p-col">
             <p-button [disabled]="!(registerForm.controls['password'].dirty && !registerForm.errors.minLength && registerForm.errors.pEqual === true)" type="submit" label="register"></p-button>
           </div>
-        </div>
+        </div> 
       </div>
     </form>
   </div>
   <div class="info__content">
-    <span>You have your own account? </span>
+    <span>Already registered? </span>
     <a [routerLink]="['/login']">Log in</a>
     <span> then.</span>
   </div>
