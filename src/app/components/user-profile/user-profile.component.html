@@ -150,17 +150,20 @@
           </tr>
         </ng-template>
       </p-table>
-    </div>
   </div>
+</div>
 
   <div class="avatar-uploader__container">
-    <img class="image__placeholder" *ngIf="!!avatarUrl" src="{{ avatarUrl }}" >
-    <div *ngIf="!avatarUrl" class="uploader__frame" (click)="fileUploader.click()" dragAndDrop (onFileDropped)="uploadFile($event)"></div>
-    <input hidden #fileUploader type="file" (change)="uploadFile($event.target.files[0])">
-
+    <div class="avatar-uploader__inner">
+      <i *ngIf="avatarUrl || avatar" class="delete__button fa fa-close" (click)="shouldDeleteAvatarFromProfile()"></i>
+      <img class="image__placeholder" *ngIf="!!avatarUrl" src="{{ avatarUrl }}" >
+      <div class="uploader__frame" (click)="fileUploader.click()" dragAndDrop (onFileDropped)="uploadFile($event)">
+        <i *ngIf="!avatarUrl" class="upload__icon fa fa-upload"></i>
+      </div>
+      <input hidden #fileUploader type="file" (change)="uploadFile($event.target.files[0])">
+    </div>
     <div *ngIf="!!avatar" class="file__listing">
-      <p> {{ avatar.name }}</p>
-      <span (click)="deleteFile()">&times;</span>
+      <p-button class="p-button-success" (click)="saveFile()">Zapisz</p-button>
     </div>
   </div>
 

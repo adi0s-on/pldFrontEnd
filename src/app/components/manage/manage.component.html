@@ -1,6 +1,6 @@
-<div class="content">
-  <div class="basic-data__tables">
-    <p-table class="user-data__table" [value]="exercises">
+<div class="container py-1 px-1">
+  <div class="row">
+    <p-table class="col-xl-4" [value]="exercises">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
@@ -38,7 +38,7 @@
       </ng-template>
     </p-table>
 
-    <p-table class="user-details__table" [value]="exerciseDetails">
+    <p-table class="col-xl-4" [value]="exerciseDetails">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
@@ -82,7 +82,7 @@
       </ng-template>
     </p-table>
 
-    <p-table class="user-details__table" [value]="exerciseEquipments">
+    <p-table class="col-xl-4" [value]="exerciseEquipments">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">

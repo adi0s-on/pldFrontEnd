@@ -6,7 +6,7 @@ import { Diaries } from 'src/app/shared/models/diaries.model';
 @Component({
   selector: 'app-remove-form-diary',
   templateUrl: './remove-form-diary.component.html',
-  styleUrls: ['./remove-form-diary.component.css']
+  styleUrls: ['./remove-form-diary.component.scss']
 })
 export class RemoveFormDiaryComponent implements OnInit {
 

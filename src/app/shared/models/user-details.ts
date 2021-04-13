@@ -5,4 +5,5 @@ export class UserDetails{
     Age: number;
     BMR: number;
     BMI: number;
+    Avatar: {Id: number, Image: any};
 }

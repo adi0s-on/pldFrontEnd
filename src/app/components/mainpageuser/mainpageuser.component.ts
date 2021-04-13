@@ -11,7 +11,7 @@ import {UserDetails} from '../../shared/models/user-details';
 @Component({
   selector: 'app-mainpageuser',
   templateUrl: './mainpageuser.component.html',
-  styleUrls: ['./mainpageuser.component.css']
+  styleUrls: ['./mainpageuser.component.scss']
 })
 export class MainpageuserComponent implements OnInit {
 

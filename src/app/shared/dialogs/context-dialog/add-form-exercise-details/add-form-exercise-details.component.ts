@@ -13,7 +13,7 @@ import {ExerciseDetails} from '../../../models/exercise-details';
 @Component({
   selector: 'app-add-form-exercise-details',
   templateUrl: './add-form-exercise-details.component.html',
-  styleUrls: ['./add-form-exercise-details.component.css']
+  styleUrls: ['./add-form-exercise-details.component.scss']
 })
 export class AddFormExerciseDetailsComponent implements OnInit {
 

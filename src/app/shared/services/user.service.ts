@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {User} from '../models/user.model';
 import {Login} from '../models/login';
 import {AuthResponse} from '../models/auth-response';
@@ -102,5 +102,16 @@ export class UserService {
         reject(err)
       })
     })
+  }
+
+  addOrUpdateAvatar(userDetailsId: number, imageContent: string): Observable<{Id: number, Image: any}> {
+    return this._http.post<{Id: number, Image: any}>(this.PATH + '/addavatar', {
+        UserDetailsId: userDetailsId,
+        Image: imageContent
+    })
+  }
+
+  deleteAvatar(id: number): Observable<any> {
+    return this._http.delete<any>(this.PATH + `/deleteavatar?id=${id}`);
   }
 }

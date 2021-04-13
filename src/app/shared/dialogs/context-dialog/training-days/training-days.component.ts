@@ -16,7 +16,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-training-days',
   templateUrl: './training-days.component.html',
-  styleUrls: ['./training-days.component.css']
+  styleUrls: ['./training-days.component.scss']
 })
 export class TrainingDaysComponent implements OnInit {
 

@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+@import "src/styles/fonts.scss";
+@import "src/styles/primeng/primeng.scss";
+
+body {
+  margin: 0;
+}
+
+* {
+    font-family: "Microsoft YaHei UI Light";
+}
+
+.input__float-label {
+  margin: 2rem;
+  position: relative;
+
+  p-button {
+    width: 100%;
+  }
+
+  label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 0 0.5rem;
+    padding: .5rem .05rem;
+    transition: all .2s ease-in-out;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input:focus + label, input.p-filled + label {
+    width: 100%;
+    bottom: 2rem;
+    font-size: .75rem;
+    margin-left: 0.8rem;
+    padding: 0 5px 0 5px;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+    background: white;
+    border-radius: 5px;
+    color: #222831;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+{
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

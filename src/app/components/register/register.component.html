@@ -1,54 +1,45 @@
-<div class="container">
-  <div class="container__content">
-    <form [formGroup]="registerForm" (submit)="register(registerForm.value)">
-      <div class="card-body">
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="text" formControlName="Name" id="Name" class="form-control" pInputText/>
-            <label for="Name">First Name</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="text" formControlName="Surname" id="Surname" class="form-control" pInputText/>
-            <label for="Surname">Surname</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="text" formControlName="City" id="City" class="form-control" pInputText/>
-            <label for="City">City</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="text" formControlName="userName" id="userName" class="form-control" pInputText/>
-            <label for="userName">Username</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="password" formControlName="password" id="password" class="form-control" pInputText/>
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" pInputText/>
-            <label for="confirmPassword">Confirm Password</label>
-          </div>
-        </div>
-        <div class="p-field p-grid">
-          <div class="p-col">
-            <p-button [disabled]="!(registerForm.controls['password'].dirty && !registerForm.errors.minLength && registerForm.errors.pEqual === true)" type="submit" label="register"></p-button>
-          </div>
-        </div> 
+<div class="container py-1 px-1">
+  <div class="row form__wrapper">
+    <div class="col col-xl col-sm"></div>
+    <form class="col-10 col-xl-7 col-sm-8" [formGroup]="registerForm" (submit)="register(registerForm.value)">
+      <div class="row">
+        <span class="m-auto title-4 font-weight-bold">REGISTER</span>
+      </div>
+      <div class="input__float-label row">
+        <input type="text" formControlName="Name" id="Name" pInputText/>
+        <label for="Name">First Name</label>
+      </div>
+      <div class="input__float-label row">
+        <input type="text" formControlName="Surname" id="Surname" pInputText/>
+        <label for="Surname">Surname</label>
+      </div>
+      <div class="input__float-label row">
+        <input type="text" formControlName="City" id="City" pInputText/>
+        <label for="City">City</label>
+      </div>
+      <div class="input__float-label row">
+        <input type="text" formControlName="userName" id="userName" pInputText/>
+        <label for="userName">Username</label>
+      </div>
+      <div class="input__float-label row">
+        <input type="password" formControlName="password" id="password" pInputText/>
+        <label for="password">Password</label>
+      </div>
+      <div class="input__float-label row">
+        <input type="password" formControlName="confirmPassword" id="confirmPassword" pInputText/>
+        <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <div class="input__float-label row">
+        <p-button
+          [disabled]="!(registerForm.controls['password'].dirty && !registerForm.errors.minLength && registerForm.errors.pEqual === true)"
+          type="submit" label="register"></p-button>
+      </div>
+      <div style="text-align: center">
+        <span>Already registered? </span>
+        <a [routerLink]="['/login']">Log in</a>
+        <span> then.</span>
       </div>
     </form>
-  </div>
-  <div class="info__content">
-    <span>Already registered? </span>
-    <a [routerLink]="['/login']">Log in</a>
-    <span> then.</span>
+    <div class="col col-xl col-sm"></div>
   </div>
 </div>

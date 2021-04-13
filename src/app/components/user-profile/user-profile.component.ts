@@ -8,7 +8,7 @@ import {UserDetails} from '../../shared/models/user-details';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
 
@@ -18,8 +18,8 @@ export class UserProfileComponent implements OnInit {
   name: string;
   surName: string;
   city: string;
-  height: number;
   weight: number;
+  height: number;
   age: number;
 
   _dName: string;
@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
   user: User;
 
   avatar: File;
-  avatarUrl: any;
+  avatarUrl: string;
 
   constructor(private _authService: AuthService,
               private _userService: UserService) {
@@ -58,6 +58,9 @@ export class UserProfileComponent implements OnInit {
         this.height = this._dheight = res.UserDetails.Height;
         this.weight = this._dweight = res.UserDetails.Weight;
         this.age = this._dage = res.UserDetails.Age;
+        if (res.UserDetails.Avatar) {
+          this.avatarUrl = 'data:image/jpeg;base64,' + res.UserDetails.Avatar.Image;
+        }
       });
     }
   }
@@ -105,13 +108,32 @@ export class UserProfileComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(e);
     reader.onload = () => {
-      this.avatarUrl = reader.result;
+      this.avatarUrl = reader.result.toString();
       this.avatar = e;
     };
+  }
+
+
+  shouldDeleteAvatarFromProfile(): void {
+    !!this.user.UserDetails.Avatar?.Image ? this.deleteAvatar() : this.deleteFile();
+  }
+
+  deleteAvatar(): void {
+    this._userService.deleteAvatar(this.user.UserDetails.Avatar.Id).subscribe(() => {
+      this.avatar = null;
+      this.avatarUrl = null;
+    })
   }
 
   deleteFile() {
     this.avatar = null;
     this.avatarUrl = null;
+  }
+
+  saveFile(): void {
+    this._userService.addOrUpdateAvatar(+this.user.Id, this.avatarUrl.slice(this.avatarUrl.indexOf(',') + 1)).subscribe((res) => {
+      this.avatarUrl = res.Image ? 'data:image/jpeg;base64,' + res.Image : '';
+      this.avatar = null;
+    });
   }
 }

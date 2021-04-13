@@ -12,7 +12,7 @@ import {Exercise} from '../../../models/exercise';
 @Component({
   selector: 'app-add-form-exercise',
   templateUrl: './add-form-exercise.component.html',
-  styleUrls: ['./add-form-exercise.component.css']
+  styleUrls: ['./add-form-exercise.component.scss']
 })
 export class AddFormExerciseComponent implements OnInit {
 

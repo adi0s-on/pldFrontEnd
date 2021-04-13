@@ -7,7 +7,7 @@ import {DiaryService} from '../../services/diary.service';
 @Component({
   selector: 'app-context-dialog',
   templateUrl: './context-dialog.component.html',
-  styleUrls: ['./context-dialog.component.css']
+  styleUrls: ['./context-dialog.component.scss']
 })
 export class ContextDialogComponent implements OnInit {
 

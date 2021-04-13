@@ -9,7 +9,7 @@ import {AuthService} from '../../../services/auth/auth.service';
 @Component({
   selector: 'app-add-form-diary',
   templateUrl: './add-form-diary.component.html',
-  styleUrls: ['./add-form-diary.component.css']
+  styleUrls: ['./add-form-diary.component.scss']
 })
 export class AddFormDiaryComponent implements OnInit {
 
