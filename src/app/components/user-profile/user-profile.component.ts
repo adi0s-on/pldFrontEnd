@@ -4,6 +4,7 @@ import {UserService} from '../../shared/services/user.service';
 import {User} from '../../shared/models/user.model';
 import {Diaries} from '../../shared/models/diaries.model';
 import {UserDetails} from '../../shared/models/user-details';
+import {SassHelperService} from '../../shared/services/sass-helper.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -34,8 +35,11 @@ export class UserProfileComponent implements OnInit {
   avatar: File;
   avatarUrl: string;
 
+  brandingMap: Map<string, string> = new Map<string, string>();
+
   constructor(private _authService: AuthService,
-              private _userService: UserService) {
+              private _userService: UserService,
+              private _sassHelperService: SassHelperService) {
     this._userService.user$.subscribe((res)=>{
       res.Diaries.map((diary: Diaries) => {
         diary.StartDate = (diary.StartDate.toString().replace(/\D/g, ''));
@@ -136,4 +140,13 @@ export class UserProfileComponent implements OnInit {
       this.avatar = null;
     });
   }
+
+  setBrandingValue(item, value): void {
+    this.brandingMap.set(item, value);
+  }
+
+  saveBrandingColors(): void {
+    this._sassHelperService.saveBrandingSettings(this.brandingMap);
+  }
 }
+

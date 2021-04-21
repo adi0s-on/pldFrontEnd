@@ -1,0 +1,14 @@
+.menu-content {
+  height: 100%;
+  display: flex;
+
+  .menu {
+    float: left;
+  }
+
+  .page-content {
+    float: left;
+    width: 100%;
+    height: 100%;
+  }
+}

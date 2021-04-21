@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
 
   loggedIn: boolean = false;
 
+  menuToggled: boolean = false;
+
   constructor(private headerService: HeaderService,
               private _authService: AuthService) {
     _authService.isLoggedIn$.subscribe((res) => {
@@ -29,5 +31,9 @@ export class HeaderComponent implements OnInit {
 
   logOut(): void {
     this._authService.logOut();
+  }
+
+  toggleMenu(): void {
+    this.menuToggled = !this.menuToggled
   }
 }

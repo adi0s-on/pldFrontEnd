@@ -2,12 +2,22 @@
 @import "src/styles/fonts.scss";
 @import "src/styles/primeng/primeng.scss";
 
+:root {
+  --primary-font: #495057;
+}
+
 body {
   margin: 0;
 }
 
 * {
     font-family: "Microsoft YaHei UI Light";
+}
+
+* {
+  :not(.p-button-icon), :not(.p-button) {
+    color: var(--primary-font) !important;
+  }
 }
 
 .input__float-label {

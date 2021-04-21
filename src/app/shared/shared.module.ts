@@ -17,6 +17,7 @@ import {AddFormExerciseDetailsComponent} from './dialogs/context-dialog/add-form
 import {AddFormExerciseEquipmentComponent} from './dialogs/context-dialog/add-form-exercise-equipment/add-form-exercise-equipment.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DragAndDropDirective} from './directive/drag-and-drop.directive';
+import { SassHelperComponent } from './providers/sass-helper/sass-helper.component';
 
 @NgModule({
   imports: [
@@ -39,11 +40,13 @@ import {DragAndDropDirective} from './directive/drag-and-drop.directive';
     AddFormExerciseComponent,
     AddFormExerciseDetailsComponent,
     AddFormExerciseEquipmentComponent,
-    DragAndDropDirective
+    DragAndDropDirective,
+    SassHelperComponent
   ],
   exports: [
     ContextDialogComponent,
-    DragAndDropDirective
+    DragAndDropDirective,
+    SassHelperComponent
   ],
   providers: [
     HeaderService

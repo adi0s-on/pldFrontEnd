@@ -1,0 +1,15 @@
+@import "src/styles/theme-variables";
+
+$prefix: "--";
+
+@function custom-property-name($name) {
+  @return $prefix + $name;
+}
+
+@mixin define-custom-property($name, $value) {
+  #{custom-property-name($name)}: $value;
+}
+
+body {
+  @include define-custom-property('primary-font', $font-primary)
+}

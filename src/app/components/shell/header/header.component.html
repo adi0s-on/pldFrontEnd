@@ -1,17 +1,38 @@
 <header>
-  <nav class="nav">
+  <nav class="nav {{ menuToggled ? 'expanded' : 'collapsed'}}">
     <ul class="nav__list">
+      <li class="mb-4 burger">
+        <a>
+          <i class="fa fa-bars" (click)="toggleMenu()"></i>
+        </a>
+      </li>
       <li *ngFor="let link of getHeaderOptions() | async">
-        <a [routerLink]="link.url">{{ link.title }}</a>
+        <a [routerLink]="link.url">
+          <div>
+            <i class="fa fa-home"></i>
+            <span>{{ link.title }}</span>
+          </div>
+        </a>
       </li>
       <li *ngIf="!loggedIn">
-        <a [routerLink]="['/login']">login</a>
+        <div>
+          <i class="fa fa-home"></i>
+          <a [routerLink]="['/login']">login</a>
+        </div>
       </li>
       <li *ngIf="!loggedIn">
-        <a [routerLink]="['/signup']">sign up</a>
+        <div>
+          <i class="fa fa-home"></i>
+          <a [routerLink]="['/signup']">sign up</a>
+        </div>
       </li>
       <li *ngIf="loggedIn">
-        <a (click)="logOut()">logout</a>
+        <a (click)="logOut()">
+          <div>
+            <i class="fa fa-power-off"></i>
+            <span>logout</span>
+          </div>
+        </a>
       </li>
     </ul>
   </nav>

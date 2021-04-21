@@ -17,29 +17,31 @@ import {TokenInterceptor} from './shared/services/auth/token-interceptor';
 import {RegisterModule} from './components/register/register.module';
 import {ManageModule} from './components/manage/manage.module';
 import {UserProfileModule} from './components/user-profile/user-profile.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    DialogModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MainpageuserModule,
-    NotfoundRoutingModule,
-    InputTextModule,
-    ShellModule,
-    LoginModule,
-    RegisterModule,
-    ButtonModule,
-    ManageModule,
-    UserProfileModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MainpageuserModule,
+        NotfoundRoutingModule,
+        InputTextModule,
+        ShellModule,
+        LoginModule,
+        RegisterModule,
+        ButtonModule,
+        ManageModule,
+        UserProfileModule,
+        AppRoutingModule,
+        SharedModule
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

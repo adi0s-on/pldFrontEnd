@@ -1,8 +1,5 @@
-<div class="content">
-
-  <div class="user-profile__wrapper">
-
-    <div class="basic-data__tables">
+<div class="row content">
+    <div class="basic-data__tables col-8">
       <p-table class="user-data__table" [value]="[user]">
         <ng-template pTemplate="header">
           <tr>
@@ -150,21 +147,26 @@
           </tr>
         </ng-template>
       </p-table>
-  </div>
-</div>
+    </div>
 
-  <div class="avatar-uploader__container">
-    <div class="avatar-uploader__inner">
-      <i *ngIf="avatarUrl || avatar" class="delete__button fa fa-close" (click)="shouldDeleteAvatarFromProfile()"></i>
-      <img class="image__placeholder" *ngIf="!!avatarUrl" src="{{ avatarUrl }}" >
-      <div class="uploader__frame" (click)="fileUploader.click()" dragAndDrop (onFileDropped)="uploadFile($event)">
-        <i *ngIf="!avatarUrl" class="upload__icon fa fa-upload"></i>
+    <div class="avatar-uploader__container col-4">
+      <div class="avatar-uploader__inner">
+        <i *ngIf="avatarUrl || avatar" class="delete__button fa fa-close" (click)="shouldDeleteAvatarFromProfile()"></i>
+        <img class="image__placeholder" *ngIf="!!avatarUrl" src="{{ avatarUrl }}">
+        <div class="uploader__frame" (click)="fileUploader.click()" dragAndDrop (onFileDropped)="uploadFile($event)">
+          <i *ngIf="!avatarUrl" class="upload__icon fa fa-upload"></i>
+        </div>
+        <input hidden #fileUploader type="file" (change)="uploadFile($event.target.files[0])">
       </div>
-      <input hidden #fileUploader type="file" (change)="uploadFile($event.target.files[0])">
+      <div *ngIf="!!avatar" class="file__listing">
+        <p-button class="p-button-success" (click)="saveFile()">Zapisz</p-button>
+      </div>
     </div>
-    <div *ngIf="!!avatar" class="file__listing">
-      <p-button class="p-button-success" (click)="saveFile()">Zapisz</p-button>
-    </div>
+  <div class="col-12 pt-5">
+    <span>Primary color: </span>
+    <input disabled [ngModel]="brandingMap.get('primary-font')" (ngModelChange)="setBrandingValue('primary-font', $event)">
+    <p-colorPicker [ngModel]="brandingMap.get('primary-font')" (ngModelChange)="setBrandingValue('primary-font', $event)"></p-colorPicker>
   </div>
+  <button (click)="saveBrandingColors()">Save</button>
 
 </div>

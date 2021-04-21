@@ -1,8 +1,9 @@
 header {
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   display: flex;
   background: lightgray;
-  max-height: 69px;
+  height: 100vh;
+  flex-direction: row;
 }
 
 .nav {
@@ -18,21 +19,56 @@ header {
   text-transform: uppercase;
   font-family: "Microsoft YaHei UI Light";
   width: 100%;
-}
+  flex-direction: column;
 
-.nav__list li:nth-of-type(4) {
-  margin-left: auto;
+  li {
+    white-space: nowrap;
+    padding-left: 0.25rem;
+  }
 }
 
 a {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-  transition: all .3s ease-in-out;
   font-size: 1rem;
-  border-bottom: 1px solid lightgray;
+
+  div i {
+    margin-right: 5px;
+    font-size: 1.5rem;
+  }
 }
 
-a:hover {
+a div {
+  border-bottom: 1px solid lightgray;
+  transition: all .3s ease-in-out;
+}
+
+a:hover div {
   border-bottom: 1px solid black;
+}
+
+.expanded li {
+  transition: all .3s ease-in-out;
+  max-width: 200px;
+  overflow: hidden;
+
+}
+
+.collapsed li {
+  transition: all .3s ease-in-out;
+  max-width: 2rem;
+  overflow: hidden;
+}
+
+.fa-bars {
+  font-size: 2rem;
+}
+
+a div i, a div span {
+  color: var(--primary-font);
+}
+
+a div span {
+  padding-left: 45px;
 }
