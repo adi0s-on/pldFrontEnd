@@ -4,6 +4,8 @@
 
 :root {
   --primary-font: #495057;
+  --primary-background: #FFFFFF;
+  --secondary-background: #C2C2C2;
 }
 
 body {
@@ -18,6 +20,29 @@ body {
   :not(.p-button-icon), :not(.p-button) {
     color: var(--primary-font) !important;
   }
+
+  header, 
+  header ul, 
+  header ul li, 
+  header ul li a, 
+  header ul li a i, 
+  header ul li a div, 
+  header ul li a div span {
+    background-color: var(--secondary-background) !important;
+  }
+
+  :not(.p-colorpicker-preview) {
+    background-color: var(--primary-background);
+  }
+
+  tr th {
+    background-color: var(--secondary-background) !important;
+    border-color: var(--secondary-background) !important;
+  }
+
+  .spinner-container {
+    background-color: var(--primary-background) !important;
+  }
 }
 
 .input__float-label {
@@ -30,10 +55,12 @@ body {
 
   label {
     position: absolute;
-    bottom: 0;
+    width: auto !important;
+    background-color: var(--primary-background) !important;
+    bottom: 1px;
     left: 0;
     margin: 0 0 0 0.5rem;
-    padding: .5rem .05rem;
+    padding: .4rem .05rem;
     transition: all .2s ease-in-out;
   }
 

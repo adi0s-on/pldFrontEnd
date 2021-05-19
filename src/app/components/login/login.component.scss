@@ -17,7 +17,6 @@ a {
     height: 100%;
 
     form {
-      background-color: white;
       padding: 1rem 2rem;
       border: 1px solid #ced4da;
       margin: auto;
@@ -41,4 +40,8 @@ a {
 ::ng-deep p-button.login-button button {
   background: black;
   border: 1px solid black;
+}
+
+.panel {
+  background-color: transparent !important;
 }

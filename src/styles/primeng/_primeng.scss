@@ -2,3 +2,19 @@
   outline: none;
   box-shadow: none;
 }
+
+.p-dialog-content, .p-dialog-header {
+  background-color: var(--primary-background) !important;
+}
+
+.p-button-label, .p-button-icon {
+  background-color: inherit !important;
+}
+
+.spinner, .p-progress-spinner, svg {
+  background-color: transparent !important;
+}
+
+.p-datatable-tbody tr td {
+  border-color: var(--secondary-background) !important;
+}

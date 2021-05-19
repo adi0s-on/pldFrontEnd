@@ -4,9 +4,9 @@ import {Observable, of} from 'rxjs';
 export class HeaderService {
 
   private readonly _headerOptions: MenuLink[] = [
-    new MenuLink('home', '/home'),
-    new MenuLink('manage', '/manage'),
-    new MenuLink('profile', '/profile'),
+    new MenuLink('home', '/home', 'fa-home'),
+    new MenuLink('manage', '/manage', 'fa-cogs'),
+    new MenuLink('profile', '/profile', 'fa-user'),
   ];
 
   get headerOptions(): Observable<MenuLink[]> {

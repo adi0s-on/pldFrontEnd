@@ -9,7 +9,7 @@
       <li *ngFor="let link of getHeaderOptions() | async">
         <a [routerLink]="link.url">
           <div>
-            <i class="fa fa-home"></i>
+            <i class="fa {{link.iconName}}"></i>
             <span>{{ link.title }}</span>
           </div>
         </a>

@@ -6,7 +6,7 @@
       </span>
     </div>
     <div class="buttons__container">
-      <button (click)="toggleAddingNewDay(true)" pButton pRipple type="button" label="ADD DAY" class="p-button-raised p-button-primary"></button>
+      <button (click)="toggleAddingNewDay(true)" pButton pRipple type="button" label="ADD DAY" class="p-button-raised p-button-success"></button>
       <button [disabled]="!currentDay" (click)="toggleEdittingDay(true)" pButton pRipple type="button" label="EDIT" class="p-button-raised p-button-warning"></button>
     </div>
   </div>
@@ -73,7 +73,7 @@
 <div [classList]="isEdittingDay ? 'date-editing__on' : 'date-editing__off'">
   <div style="display: inherit" *ngIf="isEdittingDay" >
     <div class="edit-buttons__container">
-      <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-primary"></button>
+      <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-success"></button>
       <button (click)="toggleAdding(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
     </div>
     <div *ngIf="isAdding" class="add__form">

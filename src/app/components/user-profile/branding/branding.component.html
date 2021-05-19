@@ -1,8 +1,30 @@
-<div class="col-12 pt-5">
-  <span>Primary color: </span>
-  <input disabled [ngModel]="brandingMap.get('primary-font')"
-         (ngModelChange)="setBrandingValue('primary-font', $event)">
-  <p-colorPicker [ngModel]="brandingMap.get('primary-font')"
-                 (ngModelChange)="setBrandingValue('primary-font', $event)"></p-colorPicker>
+<div class="row">
+       <div class="col-12 col-lg-6 col-xl-4 pt-5">
+       <span>Primary font color: </span>
+       <input disabled [ngModel]="brandingMap.get('primary-font')"
+              (ngModelChange)="setBrandingValue('primary-font', $event)">
+       <p-colorPicker [ngModel]="brandingMap.get('primary-font')"
+                     (ngModelChange)="setBrandingValue('primary-font', $event)"></p-colorPicker>
+       </div>
+
+       <div class="col-12 col-lg-6 col-xl-4 pt-5">
+       <span>Primary background color: </span>
+       <input disabled [ngModel]="brandingMap.get('primary-background')"
+              (ngModelChange)="setBrandingValue('primary-background', $event)">
+       <p-colorPicker [ngModel]="brandingMap.get('primary-background')"
+                     (ngModelChange)="setBrandingValue('primary-background', $event)"></p-colorPicker>
+       </div>
+
+       <div class="col-12 col-lg-6 col-xl-4 pt-5">
+              <span>Secondary background color: </span>
+              <input disabled [ngModel]="brandingMap.get('secondary-background')"
+                     (ngModelChange)="setBrandingValue('secondary-background', $event)">
+              <p-colorPicker [ngModel]="brandingMap.get('secondary-background')"
+                            (ngModelChange)="setBrandingValue('secondary-background', $event)"></p-colorPicker>
+       </div>
+       
+
+       <div class="col-12 pt-3">
+              <button (click)="saveBrandingColors()" label="Save" type="button" pButton pRipple class="p-button-raised p-button-success"></button>
+       </div>
 </div>
-<button (click)="saveBrandingColors()">Save</button>

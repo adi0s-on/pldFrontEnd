@@ -40,7 +40,7 @@ a {
 }
 
 a div {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--primary-font);
   transition: all .3s ease-in-out;
 }
 

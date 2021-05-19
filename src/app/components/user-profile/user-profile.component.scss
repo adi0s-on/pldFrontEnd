@@ -74,6 +74,7 @@
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 101;
+    background-color:transparent !important;
   }
 }
 
@@ -135,4 +136,8 @@
   height: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+::ng-deep app-branding {
+  width: 100%;;
 }
