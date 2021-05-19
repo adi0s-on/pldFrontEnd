@@ -35,8 +35,6 @@ export class UserProfileComponent implements OnInit {
   avatar: File;
   avatarUrl: string;
 
-  brandingMap: Map<string, string> = new Map<string, string>();
-
   constructor(private _authService: AuthService,
               private _userService: UserService,
               private _sassHelperService: SassHelperService) {
@@ -139,14 +137,6 @@ export class UserProfileComponent implements OnInit {
       this.avatarUrl = res.Image ? 'data:image/jpeg;base64,' + res.Image : '';
       this.avatar = null;
     });
-  }
-
-  setBrandingValue(item, value): void {
-    this.brandingMap.set(item, value);
-  }
-
-  saveBrandingColors(): void {
-    this._sassHelperService.saveBrandingSettings(this.brandingMap);
   }
 }
 

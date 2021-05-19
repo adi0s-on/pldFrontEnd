@@ -1,0 +1,8 @@
+<div class="col-12 pt-5">
+  <span>Primary color: </span>
+  <input disabled [ngModel]="brandingMap.get('primary-font')"
+         (ngModelChange)="setBrandingValue('primary-font', $event)">
+  <p-colorPicker [ngModel]="brandingMap.get('primary-font')"
+                 (ngModelChange)="setBrandingValue('primary-font', $event)"></p-colorPicker>
+</div>
+<button (click)="saveBrandingColors()">Save</button>

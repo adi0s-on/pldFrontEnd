@@ -9,10 +9,12 @@ import {UserProfileRoutingModule} from './user-profile-routing.module';
 import {FormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {ColorPickerModule} from 'primeng/colorpicker';
+import { BrandingComponent } from './branding/branding.component';
 
 @NgModule({
   declarations: [
-    UserProfileComponent
+    UserProfileComponent,
+    BrandingComponent
   ],
     imports: [
         CommonModule,

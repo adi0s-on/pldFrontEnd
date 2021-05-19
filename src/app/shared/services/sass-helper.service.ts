@@ -9,6 +9,7 @@ export class SassHelperService {
 
   public colorsChanged = new Subject<boolean>();
   public _colorsChanged = this.colorsChanged.asObservable();
+  public branding;
 
   constructor() {
   }
@@ -28,6 +29,7 @@ export class SassHelperService {
     for(let v in json) {
       map.set(v, json[v])
     }
+    this.branding = map;
     return map.size > 0 ?
       map :
       null;
