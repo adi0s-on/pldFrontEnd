@@ -20,12 +20,14 @@
           Sleep length: {{currentDay.Dream.Length}}
         </span>
       </div>
-      <div class="training-unit__data" *ngFor="let trainingUnit of currentDay.TrainingUnits">
+      <div class="training-unit__data {{selectedTrainingUnit?.Id == trainingUnit.Id ? 'active': ''}}" *ngFor="let trainingUnit of currentDay.TrainingUnits"
+          (click)="setSelectedTrainingUnit(trainingUnit)">
         <div *ngIf="trainingUnit.ExerciseTrainings.length > 0 && addingType === 'training'" class="exercise-training__cbx">
           <input (click)="updateCbxIdList(trainingUnit.Id)" type="checkbox">
         </div>
         <div class="exercise-training__list">
-          <div class="exercise-training__data" *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
+          <div class="exercise-training__data"
+               *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
             <span>Exercise name: {{ exerciseTraining.Exercise.Name}}</span>
             <span *ngIf="exerciseTraining.Exercise.ExerciseEquipment">
               Equipment name: {{ exerciseTraining.Exercise.ExerciseEquipment.Name }}
@@ -33,9 +35,9 @@
             <span *ngIf="exerciseTraining.ExerciseDetails">
               Series and repeats: {{ exerciseTraining.ExerciseDetails.Series}} x {{ exerciseTraining.ExerciseDetails.Repeats}}
             </span>
-            <span class="line__break"></span>
           </div>
         </div>
+        <span class="line__break"></span>
       </div>
     </div>
   </div>
@@ -101,7 +103,7 @@
         </form>
       </div>
       <div *ngIf="addingType === 'unit' || addingType === 'training' ">
-        <form [formGroup]="addTrainingUnit" (submit)="submit(addTrainingUnit.value)">
+        <form [formGroup]="addTrainingUnit" (submit)="addExerciseToTrainingUnit(addTrainingUnit.value)">
           <div class="p-field p-grid">
             <div class="p-col">
               <label for="ExerciseId" class="p-col-fixed">Exercise</label>

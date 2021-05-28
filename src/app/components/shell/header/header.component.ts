@@ -15,10 +15,14 @@ export class HeaderComponent implements OnInit {
 
   menuToggled: boolean = false;
 
-  constructor(private headerService: HeaderService,
+  constructor(private _headerService: HeaderService,
               private _authService: AuthService) {
     _authService.isLoggedIn$.subscribe((res) => {
       this.loggedIn = res;
+    });
+
+    this._headerService.menuOpened$.subscribe(() => {
+      this.menuToggled = !this.menuToggled;
     })
   }
 
@@ -26,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getHeaderOptions(): Observable<MenuLink[]> {
-    return this.headerService.headerOptions;
+    return this._headerService.headerOptions;
   }
 
   logOut(): void {
@@ -34,6 +38,6 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu(): void {
-    this.menuToggled = !this.menuToggled
+    this._headerService.toggleMenu();
   }
 }

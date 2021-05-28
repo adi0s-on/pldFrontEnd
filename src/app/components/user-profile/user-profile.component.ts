@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private _authService: AuthService,
               private _userService: UserService,
               private _sassHelperService: SassHelperService) {
-    this._userService.user$.subscribe((res)=>{
+    this._userService.user$.subscribe((res) => {
       res.Diaries.map((diary: Diaries) => {
         diary.StartDate = (diary.StartDate.toString().replace(/\D/g, ''));
         diary.EndDate = (diary.EndDate.toString().replace(/\D/g, ''));

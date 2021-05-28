@@ -1,6 +1,6 @@
-<div class="container py-1 px-1">
-  <div class="row">
-    <p-table class="col-xl-4" [value]="exercises">
+<div class="container row">
+  <div class="col-xl-4">
+    <p-table [value]="exercises">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
@@ -37,8 +37,9 @@
         </tr>
       </ng-template>
     </p-table>
-
-    <p-table class="col-xl-4" [value]="exerciseDetails">
+  </div>
+  <div class="col-xl-4">
+    <p-table [value]="exerciseDetails">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
@@ -81,8 +82,9 @@
         </tr>
       </ng-template>
     </p-table>
-
-    <p-table class="col-xl-4" [value]="exerciseEquipments">
+  </div>
+  <div class="col-xl-4">
+    <p-table [value]="exerciseEquipments">
       <ng-template pTemplate="colgroup">
         <colgroup>
           <col style="width: 10%">
@@ -111,7 +113,6 @@
       </ng-template>
     </p-table>
   </div>
-
   <app-context-dialog [displayModal]="modalToDisplay"
                       [modalType]="operationType"
                       (modalClosed)="modalToDisplay = $event">

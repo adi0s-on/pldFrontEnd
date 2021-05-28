@@ -31,6 +31,28 @@ export class TrainingService {
     });
   }
 
+  addExerciseToTrainingUnit(TrainingUnit: TrainingUnit, data: any): Promise<ExerciseTraining> | void {
+    data.TrainingUnitId = TrainingUnit.Id;
+    data.ExerciseDetailsId = data.ExerciseDetailsId.Id;
+    data.ExerciseId = data.ExerciseId.Id;
+    return new Promise((resolve, reject) => {
+      this._http.post(this.PATH + '/create/exercise', data).subscribe((res: ExerciseTraining) => {
+        if (res) {
+
+          const currentDay = this._dayService._currentDay;
+          if (currentDay) {
+            TrainingUnit.ExerciseTrainings.push(res);
+            this._dayService.currentDay.next(currentDay);
+            this._dayService._currentDay = currentDay;
+          }
+          resolve(res);
+        }
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
   createNewExerciseTraining(dayId: string, data: any): Promise<ExerciseTraining> | void {
     this.addNewTrainingUnit(dayId).then((trainingRes: TrainingUnit) => {
 

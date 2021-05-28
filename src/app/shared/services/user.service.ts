@@ -9,6 +9,7 @@ import {Register} from '../models/register';
 import {UserDetails} from '../models/user-details';
 import {DiaryService} from './diary.service';
 import {DayService} from './day.service';
+import {SassHelperService} from './sass-helper.service';
 
 @Injectable({
   providedIn: 'root'

@@ -12,6 +12,7 @@ import {TrainingService} from '../../../services/training.service';
 import {ExercisesWeekSummary} from '../../../models/exercises-week-summary';
 import {ExerciseStatus} from '../../../models/exercise-status';
 import * as moment from 'moment';
+import {TrainingUnit} from '../../../models/training-unit';
 
 @Component({
   selector: 'app-training-days',
@@ -23,6 +24,8 @@ export class TrainingDaysComponent implements OnInit {
   @Input() diary: Diaries;
 
   @Output() closeModal = new EventEmitter<boolean>();
+
+  selectedTrainingUnit: TrainingUnit;
 
   currentDay: Day;
 
@@ -200,6 +203,10 @@ export class TrainingDaysComponent implements OnInit {
     }
   }
 
+  addExerciseToTrainingUnit(value: any): void {
+    this._trainingService.addExerciseToTrainingUnit(this.selectedTrainingUnit, value);
+  }
+
   resetForm(): void {
     if (this.addDreamForm) {
       this.addDreamForm.reset();
@@ -229,5 +236,9 @@ export class TrainingDaysComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  setSelectedTrainingUnit(TrainingUnit: TrainingUnit): void {
+    this.selectedTrainingUnit = TrainingUnit;
   }
 }

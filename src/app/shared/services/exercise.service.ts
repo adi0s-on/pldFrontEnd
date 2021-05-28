@@ -4,9 +4,6 @@ import {Exercise} from '../models/exercise';
 import {BehaviorSubject} from 'rxjs';
 import {ExerciseDetails} from '../models/exercise-details';
 import {ExerciseEquipment} from '../models/exercise-equipment';
-import {ExerciseTraining} from '../models/exercise-training';
-import {TrainingService} from './training.service';
-import {TrainingUnit} from '../models/training-unit';
 
 @Injectable({
   providedIn: 'root'

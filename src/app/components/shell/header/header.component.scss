@@ -27,25 +27,104 @@ header {
   }
 }
 
-a {
+
+.burger_lines {
+  background-color: var(--secondary-background);
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 24px;
+
+  .burger_line, .burger-line::before, .burger::after {
+    width: 30px;
+    height: 4px;
+    transition-timing-function: ease;
+    transition-duration: .15s;
+    transition-property: transform;
+    background-color: var(--primary-font);
+    border-radius: 4px;
+  }
+
+  .burger_line {
+    top: 2px;
+  }
+
+  .burger_line:before, .burger_line:after {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 4px;
+    content: "";
+    background-color: var(--primary-font);
+  }
+
+  .burger_line:before {
+    border-radius: 4px;
+    top: 10px;
+    transition-timing-function: ease;
+    transition-duration: .15s;
+    transition-property: transform,opacity;
+  }
+
+  .burger_line:after {
+    border-radius: 4px;
+    top: 20px;
+    transition-timing-function: ease;
+    transition-duration: .15s;
+    transition-property: transform,opacity;
+  }
+}
+.burger.clicked{
+  .burger_line {
+    transform: translate3d(0,10px,0) rotate(
+        45deg
+    );
+  }
+  .burger_line:before {
+    transform: rotate(
+        -45deg
+    ) translate3d(-5.71429px,-6px,0);
+    opacity: 0;
+  }
+  .burger_line:after {
+    transform: translate3d(0,-20px,0) rotate(
+        -90deg
+    );
+  }
+}
+li {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   font-size: 1rem;
 
+  &.burger {
+    margin-left: auto;
+    max-width: 40px !important;
+
+    &.clicked {
+
+    }
+  }
+
   div i {
     margin-right: 5px;
     font-size: 1.5rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
 a div {
   border-bottom: 1px solid var(--primary-font);
   transition: all .3s ease-in-out;
-}
 
-a:hover div {
-  border-bottom: 1px solid black;
+  span {
+    border: none;
+    text-underline: none;
+  }
 }
 
 .expanded li {
@@ -69,6 +148,19 @@ a div i, a div span {
   color: var(--primary-font);
 }
 
-a div span {
-  padding-left: 45px;
+a {
+  display: flex;
+
+  .icon {
+    width: 32px;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  .label {
+    padding-left: 1.5rem;
+    text-decoration: none;
+    outline: none;
+    width: 100px;
+  }
 }
