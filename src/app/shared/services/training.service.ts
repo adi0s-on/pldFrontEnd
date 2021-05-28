@@ -31,17 +31,15 @@ export class TrainingService {
     });
   }
 
-  addExerciseToTrainingUnit(TrainingUnit: TrainingUnit, data: any): Promise<ExerciseTraining> | void {
-    data.TrainingUnitId = TrainingUnit.Id;
-    data.ExerciseDetailsId = data.ExerciseDetailsId.Id;
-    data.ExerciseId = data.ExerciseId.Id;
+  addExerciseToTrainingUnit(data: any): Promise<ExerciseTraining> {
+    console.log(data)
     return new Promise((resolve, reject) => {
-      this._http.post(this.PATH + '/create/exercise', data).subscribe((res: ExerciseTraining) => {
+      this._http.post(this.PATH + '/create/exercise', data).subscribe((res) => {
+        console.log(res);
         if (res) {
-
           const currentDay = this._dayService._currentDay;
           if (currentDay) {
-            TrainingUnit.ExerciseTrainings.push(res);
+            currentDay.TrainingUnits[currentDay.TrainingUnits.map(tu => tu.Id).indexOf(data.TrainingUnitId)].ExerciseTrainings.push(res);
             this._dayService.currentDay.next(currentDay);
             this._dayService._currentDay = currentDay;
           }

@@ -35,6 +35,8 @@ export class TrainingDaysComponent implements OnInit {
   isEdittingDay: boolean = false;
   isAdding: boolean = false;
 
+  isAddingExercise: boolean = false;
+
   addingType: string;
 
   addDreamForm: FormGroup;
@@ -81,7 +83,6 @@ export class TrainingDaysComponent implements OnInit {
     });
 
     this._exerciseService.exerciseDetails$.subscribe((_exerciseDetails: ExerciseDetails[]) => {
-      console.log(_exerciseDetails)
       if (_exerciseDetails) {
         _exerciseDetails.forEach((_ed) => {
           _ed.display = `C: ${_ed.Concetric}, CP: ${_ed.ConcetricPause}, E: ${_ed.Eccentric}, EP: ${_ed.EccentricPause}, S: ${_ed.Series}, R: ${_ed.Repeats}`;
@@ -203,10 +204,6 @@ export class TrainingDaysComponent implements OnInit {
     }
   }
 
-  addExerciseToTrainingUnit(value: any): void {
-    this._trainingService.addExerciseToTrainingUnit(this.selectedTrainingUnit, value);
-  }
-
   resetForm(): void {
     if (this.addDreamForm) {
       this.addDreamForm.reset();
@@ -239,6 +236,16 @@ export class TrainingDaysComponent implements OnInit {
   }
 
   setSelectedTrainingUnit(TrainingUnit: TrainingUnit): void {
-    this.selectedTrainingUnit = TrainingUnit;
+    if (this.isAddingExercise) {
+      if (this.selectedTrainingUnit?.Id != TrainingUnit?.Id) {
+        this.selectedTrainingUnit = TrainingUnit;
+      } else {
+        this.selectedTrainingUnit = null;
+      }
+    }
+  }
+
+  toggleAddingExercise(status): void {
+    this.isAddingExercise = status;
   }
 }

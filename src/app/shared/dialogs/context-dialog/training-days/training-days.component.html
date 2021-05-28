@@ -6,8 +6,8 @@
       </span>
     </div>
     <div class="buttons__container">
-      <button (click)="toggleAddingNewDay(true)" pButton pRipple type="button" label="ADD DAY" class="p-button-raised p-button-success"></button>
-      <button [disabled]="!currentDay" (click)="toggleEdittingDay(true)" pButton pRipple type="button" label="EDIT" class="p-button-raised p-button-warning"></button>
+      <button (click)="toggleAddingNewDay(!isAddingNewDay)" pButton pRipple type="button" label="ADD DAY" class="p-button-raised p-button-success"></button>
+      <button [disabled]="!currentDay" (click)="toggleEdittingDay(!isEdittingDay)" pButton pRipple type="button" label="EDIT" class="p-button-raised p-button-warning"></button>
     </div>
   </div>
   <div [className]="currentDay ? 'details__day' : 'details__empty' " class="details__day">
@@ -20,11 +20,8 @@
           Sleep length: {{currentDay.Dream.Length}}
         </span>
       </div>
-      <div class="training-unit__data {{selectedTrainingUnit?.Id == trainingUnit.Id ? 'active': ''}}" *ngFor="let trainingUnit of currentDay.TrainingUnits"
+      <div class="training-unit__data {{isAddingExercise ? 'ptr' : ''}} {{(selectedTrainingUnit?.Id == trainingUnit.Id && isAddingExercise) ? 'active': ''}}" *ngFor="let trainingUnit of currentDay.TrainingUnits"
           (click)="setSelectedTrainingUnit(trainingUnit)">
-        <div *ngIf="trainingUnit.ExerciseTrainings.length > 0 && addingType === 'training'" class="exercise-training__cbx">
-          <input (click)="updateCbxIdList(trainingUnit.Id)" type="checkbox">
-        </div>
         <div class="exercise-training__list">
           <div class="exercise-training__data"
                *ngFor="let exerciseTraining of trainingUnit.ExerciseTrainings">
@@ -77,6 +74,9 @@
     <div class="edit-buttons__container">
       <button (click)="toggleAdding(true, 'dream')" pButton pRipple type="button" label="ADD DREAM" class="p-button-raised p-button-success"></button>
       <button (click)="toggleAdding(true, 'unit')" pButton pRipple type="button" label="ADD TRAINING UNIT" class="p-button-raised p-button-warning"></button>
+      <button (click)="toggleAddingExercise(!isAddingExercise)"
+              pButton pRipple type="button"
+              label="ADD EXERCISE TO UNIT" class="p-button-raised p-button-warning"></button>
     </div>
     <div *ngIf="isAdding" class="add__form">
       <div *ngIf="addingType === 'dream'">
@@ -103,7 +103,7 @@
         </form>
       </div>
       <div *ngIf="addingType === 'unit' || addingType === 'training' ">
-        <form [formGroup]="addTrainingUnit" (submit)="addExerciseToTrainingUnit(addTrainingUnit.value)">
+        <form [formGroup]="addTrainingUnit" (submit)="submit(addTrainingUnit.value)">
           <div class="p-field p-grid">
             <div class="p-col">
               <label for="ExerciseId" class="p-col-fixed">Exercise</label>
@@ -130,5 +130,10 @@
         </form>
       </div>
     </div>
+
+    <app-td-add-exercise [addingExercise]="isAddingExercise"
+                         [trainingId]="selectedTrainingUnit?.Id"
+                         (closed)="toggleAddingExercise(false)"
+    ></app-td-add-exercise>
   </div>
 </div>
