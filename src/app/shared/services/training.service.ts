@@ -34,7 +34,7 @@ export class TrainingService {
   addExerciseToTrainingUnit(data: any): Promise<ExerciseTraining> {
     console.log(data)
     return new Promise((resolve, reject) => {
-      this._http.post(this.PATH + '/create/exercise', data).subscribe((res) => {
+      this._http.post(this.PATH + '/create/exercise', data).subscribe((res: any) => {
         console.log(res);
         if (res) {
           const currentDay = this._dayService._currentDay;

@@ -1,0 +1,30 @@
+<div *ngIf="addingExercise">
+  <form [formGroup]="addExerciseForm" (submit)="submit()">
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <label for="ExerciseId" class="p-col-fixed">Exercise</label>
+        <p-dropdown id="ExerciseId"
+                    inputId="ExerciseId"
+                    formControlName="ExerciseId"
+                    [options]="exercises"
+                    optionValue="Id"
+                    placeholder="Exercise name"
+                    optionLabel="Name"></p-dropdown>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <label for="ExerciseDetailsId" class="p-col-fixed">Exercise details</label>
+        <p-dropdown id="ExerciseDetailsId"
+                    inputId="ExerciseDetailsId"
+                    formControlName="ExerciseDetailsId"
+                    [options]="exerciseDetails"
+                    optionValue="Id"
+                    placeholder="Exercise details"
+                    optionLabel="display"></p-dropdown>
+      </div>
+    </div>
+    <button [disabled]="!addExerciseForm.valid" pButton pRipple type="submit" label="Add" class="submit-green-button p-button-raised p-button-success"></button>
+  </form>
+  <span *ngIf="_trainingUnitId == '' || _trainingUnitId == null">Select training unit </span>
+</div>
