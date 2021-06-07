@@ -161,6 +161,8 @@ export class TrainingDaysComponent implements OnInit {
   toggleAdding(status: boolean, type?: string): void {
     this.isAdding = status;
     this.addingType = type;
+    this.isAddingExercise = false;
+    this.selectedTrainingUnit = null;
 
     if (status) {
       this.buildForm();
@@ -246,6 +248,8 @@ export class TrainingDaysComponent implements OnInit {
   }
 
   toggleAddingExercise(status): void {
+    this.isAdding = false;
+    this.addingType = '';
     this.isAddingExercise = status;
   }
 }
